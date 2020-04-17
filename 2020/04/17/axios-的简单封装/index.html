@@ -79,12 +79,14 @@
 
 
 
-<meta name="description" content="如果爱，请深爱">
-<meta property="og:type" content="website">
-<meta property="og:title" content="summertzz&#39;blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="尝试对 axios 进行简单的封装。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182import axios from &#39;axios&#39;;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="axios 的简单封装">
+<meta property="og:url" content="http://yoursite.com/2020/04/17/axios-%E7%9A%84%E7%AE%80%E5%8D%95%E5%B0%81%E8%A3%85/index.html">
 <meta property="og:site_name" content="summertzz&#39;blog">
-<meta property="og:description" content="如果爱，请深爱">
+<meta property="og:description" content="尝试对 axios 进行简单的封装。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182import axios from &#39;axios&#39;;">
+<meta property="article:published_time" content="2020-04-17T08:53:14.000Z">
+<meta property="article:modified_time" content="2020-04-17T08:56:23.149Z">
 <meta property="article:author" content="summertzz">
 <meta name="twitter:card" content="summary">
 
@@ -116,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/04/17/axios-的简单封装/"/>
 
 
 
 
 
-  <title>summertzz'blog</title>
+  <title>axios 的简单封装 | summertzz'blog</title>
   
 
 
@@ -141,8 +143,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
      <a href="https://summertzz.github.io" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 
@@ -246,9 +247,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -278,9 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/17/axios-%E7%9A%84%E7%AE%80%E5%8D%95%E5%B0%81%E8%A3%85/" itemprop="url">axios 的简单封装</a></h1>
+          <h1 class="post-title" itemprop="name headline">axios 的简单封装</h1>
         
 
         <div class="post-meta">
@@ -311,6 +310,11 @@
           
           
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
           
 
           
@@ -361,12 +365,8 @@
       
 
       
-        
-          
-            <p>尝试对 axios 进行简单的封装。</p>
+        <p>尝试对 axios 进行简单的封装。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> (process.env.NODE_ENV) &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'production'</span>:</span><br><span class="line">    axios.defaults.baseURL = <span class="string">'http://api.balabala.cn'</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'test'</span>:</span><br><span class="line">    axios.defaults.baseURL = <span class="string">'http://192.168.1.1:8080'</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">default</span>:</span><br><span class="line">    axios.defaults.baseURL = <span class="string">'http://127.0.0.1:3000'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 设置超时时间和跨域是否允许携带凭证</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">axios.defaults.timeout = <span class="number">10000</span>;</span><br><span class="line">axios.defaults.withCredentials = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 设置请求传递的数据格式（需要看服务器要求什么格式）</span></span><br><span class="line"><span class="comment"> * 比如：x-www-form-urlencoded</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">axios.defaults.headers[<span class="string">'Content-Type'</span>] = <span class="string">'application/x-www-form-urlencoded'</span>;</span><br><span class="line">axios.defaults.transformRequest = <span class="function"><span class="params">paramData</span> =&gt;</span> qs.stringify(paramData);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 设置请求拦截器</span></span><br><span class="line"><span class="comment"> * 客户端发送请求 -&gt; [请求拦截器] -&gt; 服务器</span></span><br><span class="line"><span class="comment"> * token 校验(JWT): 接收服务器返回的 token，存储到 vuex /本地存储。每一次向服务器发请求，应该把 token 带上</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">axios.interceptors.request.use(<span class="function">(<span class="params">config</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 携带 token</span></span><br><span class="line">  <span class="keyword">let</span> token = localStorage.getItem(<span class="string">'token'</span>);</span><br><span class="line">  token &amp;&amp; (config.headers.Authorization = token);</span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;, error =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 设置响应拦截器</span></span><br><span class="line"><span class="comment"> * 服务器返回信息 -&gt; [拦截的统一处理] -&gt; 客户端获取到的信息</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// axios.defaults.validateStatus = status =&gt; &#123;</span></span><br><span class="line"><span class="comment">//   //  自定义响应成功的 http 状态码</span></span><br><span class="line"><span class="comment">//   return /^(2|3)\d&#123;2&#125;$/.test(status);</span></span><br><span class="line"><span class="comment">// &#125;;</span></span><br><span class="line"></span><br><span class="line">axios.interceptors.response.use(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> response.data;</span><br><span class="line">&#125;, error =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> &#123;</span><br><span class="line">    response</span><br><span class="line">  &#125; = error;</span><br><span class="line">  <span class="keyword">if</span> (response) &#123;</span><br><span class="line">    <span class="comment">// 服务器返回结果了</span></span><br><span class="line">    <span class="keyword">switch</span> (response.status) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">401</span>: <span class="comment">// 权限</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">403</span>: <span class="comment">// 服务器拒绝执行(token 过期)</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">404</span>: <span class="comment">// 找不到页面</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">401</span>: <span class="comment">// 权限</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 服务器没返回结果</span></span><br><span class="line">    <span class="comment">// 1.客服端断网了</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">window</span>.navigator.onLine) &#123;</span><br><span class="line">      <span class="comment">// 断网处理，跳转到断网页面</span></span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 2.服务器崩了</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> axios;</span><br></pre></td></tr></table></figure>
-          
-        
       
     </div>
     
@@ -383,188 +383,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/17/%E5%B0%8F%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="summertzz">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/27355995?s=40&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="summertzz'blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/17/%E5%B0%8F%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/" itemprop="url">没有“高大上”，只有 “短穷挫”</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-17T14:21:47+08:00">
-                2020-04-17
-              </time>
+              <a href="/2020/04/17/%E5%B0%8F%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/" rel="next" title="没有“高大上”，只有 “短穷挫”">
+                <i class="fa fa-chevron-left"></i> 没有“高大上”，只有 “短穷挫”
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.1k 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <ol>
-<li><p>修改 svg 图片的属性(宽, 高, 颜色)<br>用IDE 打开目标 svg 图片,修改对象代码的 <code>width</code> 属性, <code>height</code>属性, <code>fill</code> 属性即可。</p>
-</li>
-<li><p>vue 项目的全局样式文件直接在 main.js 页面使用即可, 比如：<code>import &#39;./assets/styles/global.scss&#39;;</code>。</p>
-</li>
-<li><p>热键的绑定, 如果用了封装组件的话， 比如 Element UI, 在使用按键修饰符要加上 <code>.native</code>,<br>比如：<code>&lt;el-form @keyup.enter.native=&quot;handleLogin(&#39;loginForm&#39;))&quot;&gt; &lt;/el-form&gt;</code>。</p>
-</li>
-<li><p>记住密码功能前端简单的实现方法: 用 cookie 来做, 大概思路就是通过存/取/删 cookie 来实现, 每次进入登录页，先读取 cookie ， 如果浏览器中的 cookie 里面有帐号的相关信息，就自动填充到登录框中，存 cookie 是在登录成功之后，判断当前用户是否勾选了记住密码，如果勾选了，则把帐号信息存到 cookie 中。这里可以用 <code>js-cookie</code> 这个库。 主要方法有：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入 js-cookie</span></span><br><span class="line"><span class="keyword">import</span> Cookies <span class="keyword">from</span> <span class="string">'js-cookie'</span>;</span><br><span class="line"><span class="comment">// 获取用户存入的 cookie，初始化登录表单</span></span><br><span class="line"><span class="keyword">this</span>.loginForm = Cookies.get();</span><br><span class="line"><span class="comment">// 登录成功后，存 cookie</span></span><br><span class="line">  Cookies.set(<span class="string">'loginName'</span>, that.loginForm.loginName, &#123;</span><br><span class="line">    expires: <span class="number">7</span>,</span><br><span class="line">    path: <span class="string">'/'</span>,</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure></li>
-<li><p>去除 chrome 浏览器记住密码后默认填充的样式。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/* 去掉浏览器默认填充样式 */</span><br><span class="line">     input:-webkit-autofill,</span><br><span class="line">     input:-webkit-autofill:hover,</span><br><span class="line">     input:-webkit-autofill:focus &#123;</span><br><span class="line">       font-size: 22px;</span><br><span class="line">       color: $white !important;</span><br><span class="line"></span><br><span class="line">       -webkit-text-fill-color: $white;</span><br><span class="line">       -webkit-transition: background-color 10000s ease-in-out 0s;</span><br><span class="line">       transition: background-color 10000s ease-in-out 0s;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>document.documentElement.clientWidth与document.documentElement.clientHeight, window.innerWidth与window.innerHeight, window.outerWidth与window.outerHeight, document.body.clientWidth与document.body.clientHeight, offsetWidth 与 offsetHeight 的区别。</p>
-</li>
-</ol>
-<ul>
-<li>document.documentElement.clientWidth与document.documentElement.clientHeight：获得的是屏幕可视区域的宽高，不包括滚动条与工具条<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">document.documentElement.clientWidth = width + padding</span><br><span class="line">document.documentElement.clientHeight = height + padding</span><br></pre></td></tr></table></figure></li>
-<li>window.innerWidth与window.innerHeight：获得的是可视区域的宽高，但是window.innerWidth宽度包含了纵向滚动条的宽度，window.innerHeight高度包含了横向滚动条的高度(IE8以及低版本浏览器不支持)。<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window.innerWidth = width + padding + border + 纵向滚动条宽度</span><br><span class="line">window.innerHeight = height + padding + border + 横向滚动条高度</span><br></pre></td></tr></table></figure></li>
-<li>window.outerWidth与window.outerHeight：获得的是加上工具条与滚动条窗口的宽度与高度。<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window.outerWidth = width + padding + border + 纵向滚动条宽度</span><br><span class="line">window.outerHeight = height + padding + border + 横向滚动条高度 + 工具条高度</span><br></pre></td></tr></table></figure></li>
-<li>document.body.clientWidth与document.body.clientHeight：document.body.clientWidth获得的也是可视区域的宽度，但是document.body.clientHeight获得的是body内容的高度，如果内容只有100px，那么这个高度也是 100px,如果想通过它得到屏幕可视区域的宽高，需要样式设置，如下：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  height: 100%;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">&#125;</span><br><span class="line">body, div, p, ul &#123;</span><br><span class="line">  margin: 0;</span><br><span class="line">  padding: 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>offsetWidth 与 offsetHeight 返回本身的宽高 + padding + border + 滚动条。</li>
-</ul>
-<ol start="7">
-<li>路由的设置应该与要修改的东西解耦，换句话说，就是如果存在一些属性是可以修改的，不是设计在路由参数里面去。</li>
-<li>拉平多维数组常用的方法。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, [<span class="number">11</span>, <span class="number">22</span>, <span class="number">33</span>, [<span class="number">4</span>, <span class="number">5</span>, [<span class="number">99</span>, <span class="number">100</span>]]]]</span><br><span class="line"><span class="comment">// 只适用数组内全部是数字的情况</span></span><br><span class="line">arr.join(<span class="string">','</span>).split(<span class="string">','</span>) </span><br><span class="line"><span class="comment">// ['1', '2', '3', '11', '22', '33', '4', '5', '99', '100']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 只适用数组内全部是数字的情况</span></span><br><span class="line">arr.toString().split(<span class="string">','</span>) </span><br><span class="line"><span class="comment">// ['1', '2', '3', '11', '22', '33', '4', '5', '99', '100']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 flat() 拉平数组过程中，会移除数组的空项：</span></span><br><span class="line">arr.flat() </span><br><span class="line"><span class="comment">// ['1', '2', '3', '11', '22', '33', '4', '5', '99', '100']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 递归 1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flatArr</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> res = [];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">Array</span>.isArray(arr[i])) &#123;</span><br><span class="line">      res = res.concat(flatArr(arr[i]));</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">      res.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//  ['1', '2', '3', '11', '22', '33', '4', '5', '99', '100']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 递归 2 </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flatArr</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(arr[i] <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</span><br><span class="line">      parseArr(arr[i], res);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      res.push(arr[i])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// es6 的扩展运算符  </span></span><br><span class="line">使用 es6 的扩展运算符，但是扩展运算符一次只能展开一层数组，因此只要数组中海油数组，就使用扩展运算符展开一次。</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flatArr</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(arr.some(<span class="function"><span class="params">item</span> =&gt;</span> <span class="built_in">Array</span>.isArray(item))) &#123;</span><br><span class="line">    arr = [].concat(...arr);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line">flatArr([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, [<span class="number">11</span>, <span class="number">22</span>, <span class="number">33</span>, [<span class="number">4</span>, <span class="number">5</span>, [<span class="number">99</span>, <span class="number">100</span>]]]])  <span class="comment">//[1, 2, 3, 11, 22, 33, 4, 5, 99, 100]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 利用 reduce 递归降纬</span></span><br><span class="line"><span class="comment">// 判断每一项是不是数组。如果是，则进一步递归，直到其不是为止。如果不是，则用新数组接收它。</span></span><br><span class="line"><span class="comment">// reduce</span></span><br><span class="line"><span class="keyword">const</span> flatArr = <span class="function">(<span class="params">arr</span>) =&gt;</span> arr.reduce(<span class="function">(<span class="params">prev, curr, index, list</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(curr)) &#123;</span><br><span class="line">    <span class="keyword">return</span> prev.concat(...flatArr(curr));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> prev.concat(curr);</span><br><span class="line">&#125;, []);</span><br><span class="line"></span><br><span class="line"> flatArr(arr);</span><br><span class="line"><span class="comment">//[1, 2, 3, 11, 22, 33, 4, 5, 99, 100]</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -574,161 +414,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/31/home/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="summertzz">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/27355995?s=40&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="summertzz'blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/31/home/" itemprop="url">我的第一篇博客</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-31T22:54:06+08:00">
-                2020-03-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  414 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>人的一生，会走很远的路，遇到很多的人，做很多不一样的事，人与人的邂逅，人与风景的邂逅，造就了不同的经历，或幸福，或遗憾。我很幸运地能够也有机会感知这一切的情愫，我很幸福能够遇见今天的我。没上大学之前，在别人眼里，我一直是个比较文艺的女孩，多愁善感情绪的我，总是喜欢写点东西，一段感性的文字，一首顺畅的打油诗，一个自以为很了不起的想法，我都会习惯性的拿出自己的笔记本来记录此刻的情绪，那时候的我，觉得整个世界都装在我那温暖的笔记本里。谁曾想到，大学里我选择了计算机科学专业，不一样节奏的生活习惯我开始远离了当初那个我觉得很温暖的世界，我学会了怀念，最后变成了些许遗憾吧。我想定格每一个有意义的时刻，亦苦亦甜，我想把这些回忆永恒地锁在我的世界里，待青丝染成了暮雪，能够成为与那一位跟我共度余生的人的饭后余资。我想跟他慢慢讲述这一生的故事。直到现在，才拥有了自己的博客，一直未了的心愿，终于在今天要开始动工啦，我很开心，也很期待。我想对现在的自己说：如果爱，请深爱，珍惜当下，把握现在，学会享受学习的乐趣，学会做一个有趣的人。</p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -736,6 +426,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -993,6 +687,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
