@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="如果爱，请深爱">
+<meta name="description" content="12345let str &#x3D; &#39;summertzzisagoodgirl&#39;;&#x2F;&#x2F;循环输出字符串中的每一个字符for (let i &#x3D; 0; i &lt; str.length; i++) &amp;#123;  console.log(str[i])&amp;#125;  charAt 123456789101112131415&#x2F;* * charAt：根据索引获取指定位置的字符 * charCodeAt：获取指定">
 <meta property="og:type" content="article">
 <meta property="og:title" content="字符串常用方法总结">
 <meta property="og:url" content="http://yoursite.com/2020/04/19/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="summertzz&#39;blog">
-<meta property="og:description" content="如果爱，请深爱">
+<meta property="og:description" content="12345let str &#x3D; &#39;summertzzisagoodgirl&#39;;&#x2F;&#x2F;循环输出字符串中的每一个字符for (let i &#x3D; 0; i &lt; str.length; i++) &amp;#123;  console.log(str[i])&amp;#125;  charAt 123456789101112131415&#x2F;* * charAt：根据索引获取指定位置的字符 * charCodeAt：获取指定">
 <meta property="article:published_time" content="2020-04-19T07:12:53.000Z">
-<meta property="article:modified_time" content="2020-04-19T07:12:53.363Z">
+<meta property="article:modified_time" content="2020-04-19T07:30:40.441Z">
 <meta property="article:author" content="summertzz">
 <meta name="twitter:card" content="summary">
 
@@ -328,7 +328,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0 字
+                  537 字
                 </span>
               
 
@@ -344,7 +344,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  2 分钟
                 </span>
               
             </div>
@@ -365,7 +365,28 @@
       
 
       
-        
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">'summertzzisagoodgirl'</span>;</span><br><span class="line"><span class="comment">//循环输出字符串中的每一个字符</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; str.length; i++) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(str[i])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>charAt</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * charAt：根据索引获取指定位置的字符</span></span><br><span class="line"><span class="comment"> * charCodeAt：获取指定字符的ASCII码值（Unicode编码值）</span></span><br><span class="line"><span class="comment"> *  @params</span></span><br><span class="line"><span class="comment"> * n [number] 获取字符指定的索引</span></span><br><span class="line"><span class="comment"> *  @return </span></span><br><span class="line"><span class="comment"> * 返回查找到的字符</span></span><br><span class="line"><span class="comment"> * 找不到返回的是空字符串不是undefined，或者对应的编码值 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">  <span class="keyword">let</span> str = <span class="string">'summertzzisagoodgirl'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.charAt(<span class="number">0</span>)); <span class="comment">// s</span></span><br><span class="line"><span class="built_in">console</span>.log(str[<span class="number">0</span>]);  <span class="comment">// s</span></span><br><span class="line"><span class="built_in">console</span>.log(str.charAt(<span class="number">10000</span>)); <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(str.charCodeAt(<span class="number">0</span>));  <span class="comment">//115 </span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>.fromCharCode(<span class="number">122</span>));  <span class="comment">// z</span></span><br></pre></td></tr></table></figure>
+
+<p><code>substr / substring / slice</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 都是为了实现字符串的截取（在原来字符串中查找到自己想要的）</span></span><br><span class="line"><span class="comment"> * substr(n,m)：从索引n开始截取m个字符，m不写截取到末尾（后面方法也是）</span></span><br><span class="line"><span class="comment"> * substring(n,m)：从索引n开始找到索引为m处(不含m)</span></span><br><span class="line"><span class="comment"> * slice(n,m)：和substring一样，都是找到索引为m处，但是slice可以支持负数作为索引，其余两个方法是不可以的</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<p><code>indexOf / lastIndexof / includes</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 验证字符是否存在</span></span><br><span class="line"><span class="comment"> *  indexOf(x,y)：获取x第一次出现位置的索引，y是控制查找的起始位置索引</span></span><br><span class="line"><span class="comment"> *  lastIndexOf(x)：最后一次出现位置的索引</span></span><br><span class="line"><span class="comment"> *  =&gt;没有这个字符，返回的结果是-1</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<p><code>toUpperCase / toLowerCase</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 字符串中字母的大小写转换</span></span><br><span class="line"><span class="comment"> * 	 toUpperCase()：转大写</span></span><br><span class="line"><span class="comment"> *   toLowerCase()：转小写</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">'SummerTzz'</span>;</span><br><span class="line">str = str.toUpperCase();</span><br><span class="line"><span class="built_in">console</span>.log(str); <span class="comment">//=&gt;'SUMMERTZZ'</span></span><br><span class="line"></span><br><span class="line">str = str.toLowerCase();</span><br><span class="line"><span class="built_in">console</span>.log(str); <span class="comment">//=&gt;'summer'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现首字母大写</span></span><br><span class="line">str = str.substr(<span class="number">0</span>, <span class="number">1</span>).toUpperCase() + str.substr(<span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str); <span class="comment">//=&gt;'Summertzz'</span></span><br></pre></td></tr></table></figure>
+
+<p><code>split</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * split([分隔符]):把字符串按照指定的分隔符拆分成数组（和数组中join对应）</span></span><br><span class="line"><span class="comment"> * split支持传递正则表达式 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 需求：把|分隔符变为,分隔符</span></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">'music|movie|eat|sport'</span>;</span><br><span class="line"><span class="keyword">let</span> ary = str.split(<span class="string">'|'</span>); <span class="comment">//=&gt;["music", "movie", "eat", "sport"]</span></span><br><span class="line">str = ary.join(<span class="string">','</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str); <span class="comment">//=&gt;"music,movie,eat,sport"</span></span><br></pre></td></tr></table></figure>
+
+<p><code>replace</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * replace(老字符,新字符)：实现字符串的替换（经常伴随着正则而用）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">'summer@tzz@lsbbd'</span>;</span><br><span class="line"><span class="comment">// str = str.replace('@', '-');</span></span><br><span class="line"><span class="comment">// console.log(str); //=&gt;"summer-tzz@lsbbd" 在不使用正则表达式的情况下，执行一次REPLACE只能替换一次字符</span></span><br><span class="line"></span><br><span class="line">str = str.replace(<span class="regexp">/@/g</span>, <span class="string">'-'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str); <span class="comment">//=&gt;summer-tzz-lsbbd</span></span><br></pre></td></tr></table></figure>
+
+
+
       
     </div>
     
@@ -559,7 +580,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共4.9k字</span>
+  <span class="post-count">博客全站共5.5k字</span>
 </div>
 
         
