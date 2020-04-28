@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="基础 http 请求的方式， HEAD 方式head: 类似于 get 请求，只不过返回的响应中没有具体的内容，用户获取报头。options: 允许客户端查看服务器的性能，比如说服务器支持的请求方式。 web Quality（无障碍）能够被残障人士使用的网站才能称得上一个易用（易访问）的网站，比如：使用 alt 属性1&lt;img src&#x3D;&quot;person.jpg&quot;  alt&#x3D;&quot;this is a">
+<meta name="description" content="http 请求的方式， HEAD 方式head: 类似于 get 请求，只不过返回的响应中没有具体的内容，用户获取报头。options: 允许客户端查看服务器的性能，比如说服务器支持的请求方式。 web Quality（无障碍）能够被残障人士使用的网站才能称得上一个易用（易访问）的网站，比如：使用 alt 属性1&lt;img src&#x3D;&quot;person.jpg&quot;  alt&#x3D;&quot;this is a p">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面试总结与学习(上)">
 <meta property="og:url" content="http://yoursite.com/2020/04/28/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="summertzz&#39;blog">
-<meta property="og:description" content="基础 http 请求的方式， HEAD 方式head: 类似于 get 请求，只不过返回的响应中没有具体的内容，用户获取报头。options: 允许客户端查看服务器的性能，比如说服务器支持的请求方式。 web Quality（无障碍）能够被残障人士使用的网站才能称得上一个易用（易访问）的网站，比如：使用 alt 属性1&lt;img src&#x3D;&quot;person.jpg&quot;  alt&#x3D;&quot;this is a">
+<meta property="og:description" content="http 请求的方式， HEAD 方式head: 类似于 get 请求，只不过返回的响应中没有具体的内容，用户获取报头。options: 允许客户端查看服务器的性能，比如说服务器支持的请求方式。 web Quality（无障碍）能够被残障人士使用的网站才能称得上一个易用（易访问）的网站，比如：使用 alt 属性1&lt;img src&#x3D;&quot;person.jpg&quot;  alt&#x3D;&quot;this is a p">
 <meta property="article:published_time" content="2020-04-28T01:12:14.000Z">
-<meta property="article:modified_time" content="2020-04-28T03:44:11.221Z">
+<meta property="article:modified_time" content="2020-04-28T03:48:21.472Z">
 <meta property="article:author" content="summertzz">
 <meta name="twitter:card" content="summary">
 
@@ -328,7 +328,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4.8k 字
+                  4.7k 字
                 </span>
               
 
@@ -365,7 +365,7 @@
       
 
       
-        <h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><ol>
+        <ol>
 <li>http 请求的方式， HEAD 方式<br><code>head</code>: 类似于 get 请求，只不过返回的响应中没有具体的内容，用户获取报头。<br><code>options</code>: 允许客户端查看服务器的性能，比如说服务器支持的请求方式。</li>
 <li>web Quality（无障碍）<br>能够被残障人士使用的网站才能称得上一个易用（易访问）的网站，比如：使用 alt 属性<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"person.jpg"</span>  <span class="attr">alt</span>=<span class="string">"this is a person"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
@@ -477,13 +477,15 @@
 <li>三栏布局的实现方式，尽可能多写，浮动布局时，三个div的生成顺序有没有影响,<br>三列布局又分为两种，两列定宽一列自适应，以及两侧定宽中间自适应<br>两列定宽一列自适应：<br><code>float+margin：</code>给div设置float：left，left的div添加属性margin-right：left和center的间隔px,right的div添加属性margin-left：left和center的宽度之和加上间隔<br><code>float+overflow：</code>给div设置float：left，再给right的div设置overflow:hidden。这样子两个盒子浮动，另一个盒子触发bfc达到自适应<br><code>position：</code>父级div设置position：relative，三个子级div设置position：absolute，这个要计算好盒子的宽度和间隔去设置位置，兼容性比较好，<br><code>table实现：</code>父级div设置display：table，设置border-spacing：10px//设置间距，取值随意,子级div设置display:table-cell，这种方法兼容性好，适用于高度宽度未知的情况，但是margin失效，设计间隔比较麻烦，<br><code>flex实现：</code>parent的div设置display：flex；left和center的div设置margin-right；然后right 的div设置flex：1；这样子right自适应，但是flex的兼容性不好<br><code>grid实现：</code>parent的div设置display：grid，设置grid-template-columns属性，固定第一列第二列宽度，第三列auto.</li>
 </ol>
 <p>对于两侧定宽中间自适应的布局，对于这种布局需要把center放在前面，可以采用双飞翼布局：圣杯布局，来实现，也可以使用上述方法中的grid，table，flex，position实现。<br>  30. 有一个width300，height300，怎么实现在屏幕上垂直水平居中<br> 对于行内块级元素，</p>
-<ol>
+<ul>
 <li>父级元素设置text-alig：center，然后设置line-height和vertical-align使其垂直居中，最后设置font-size：0消除近似居中的bug</li>
 <li>父级元素设置display：table-cell，vertical-align：middle达到水平垂直居中</li>
 <li>采用绝对定位，原理是子绝父相，父元素设置position：relative，子元素设置position：absolute，然后通过transform或margin组合使用达到垂直居中效果，设置top：50%，left：50%，transform：translate（-50%，-50%）</li>
 <li>绝对居中，原理是当top,bottom为0时，margin-top&amp;bottom设置auto的话会无限延伸沾满空间并平分，当left，right为0时,margin-left&amp;right设置auto会无限延伸占满空间并平分，</li>
 <li>采用flex，父元素设置display：flex，子元素设置margin：auto</li>
-<li>视窗居中，vh为视口单位，50vh即是视口高度的50/100，设置margin：50vh auto 0，transform：translate(-50%)</li>
+<li>视窗居中，vh为视口单位，50vh即是视口高度的50/100，设置margin：50vh auto 0，transform：translate(-50%)。</li>
+</ul>
+<ol start="31">
 <li>设置一个元素的背景颜色，背景颜色会填充哪些区域？<br>background-color设置的背景颜色会填充元素的content、padding、border区域</li>
 </ol>
 
@@ -570,17 +572,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -650,22 +643,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础"><span class="nav-number">1.</span> <span class="nav-text">基础</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
