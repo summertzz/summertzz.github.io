@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基础 http 请求的方式， HEAD 方式head: 类似于 get 请求，只不过返回的响应中没有具体的内容，用户获取报头。options: 允许客户端查看服务器的性能，比如说服务器支持的请求方式。 web Quality（无障碍）能够被残障人士使用的网站才能称得上一个易用（易访问）的网站，比如：使用 alt 属性1&lt;img src&#x3D;&quot;person.jpg&quot;  alt&#x3D;&quot;this is a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试总结(上)">
+<meta property="og:url" content="http://yoursite.com/2020/04/28/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="summertzz&#39;blog">
+<meta property="og:description" content="基础 http 请求的方式， HEAD 方式head: 类似于 get 请求，只不过返回的响应中没有具体的内容，用户获取报头。options: 允许客户端查看服务器的性能，比如说服务器支持的请求方式。 web Quality（无障碍）能够被残障人士使用的网站才能称得上一个易用（易访问）的网站，比如：使用 alt 属性1&lt;img src&#x3D;&quot;person.jpg&quot;  alt&#x3D;&quot;this is a">
+<meta property="article:published_time" content="2020-04-28T01:12:14.000Z">
+<meta property="article:modified_time" content="2020-04-28T03:43:42.883Z">
+<meta property="article:author" content="summertzz">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/28/面试总结/"/>
+
+
+
+
+
+  <title>面试总结(上) | summertzz'blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+     <a href="https://summertzz.github.io" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">summertzz'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">做一些有趣的事儿</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/28/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="summertzz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/27355995?s=40&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="summertzz'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">面试总结(上)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-28T09:12:14+08:00">
+                2020-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.8k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  17 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><ol>
+<li>http 请求的方式， HEAD 方式<br><code>head</code>: 类似于 get 请求，只不过返回的响应中没有具体的内容，用户获取报头。<br><code>options</code>: 允许客户端查看服务器的性能，比如说服务器支持的请求方式。</li>
+<li>web Quality（无障碍）<br>能够被残障人士使用的网站才能称得上一个易用（易访问）的网站，比如：使用 alt 属性<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"person.jpg"</span>  <span class="attr">alt</span>=<span class="string">"this is a person"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>有时候浏览器无法显示图像，具体的原因有：</li>
+<li>用户关闭了图像显示</li>
+<li>浏览器是不支持图形显示的迷你浏览器</li>
+<li>浏览器是语音浏览器，如果您使用了alt 属性，那么浏览器至少可以显示或读出有关图像的描述。</li>
+</ul>
+</li>
+<li>对 HTML 语义化标签的理解<br>HTML5 语义化标签是指正确的标签包含了正确的内容，结构良好，便于阅读，比如 nav 表示导航条，类似的还有 article，header，footer等标签。</li>
+<li>iframe 是什么？有什么缺点？<br><code>定义</code>：iframe 元素会创建另一个文档的内联框架<br><code>提示</code>： 可以将提示文字放在<code>&lt;iframe&gt; &lt;/iframe&gt;</code> 之间，来提示某些不支持 iframe 的浏览器。<br><code>缺点</code>：回阻塞主页面的 onload 事件；搜索引擎无法解读这种页面，不利于 SEO；iframe 和主页面共享连接池，而浏览器对相同区域有限制所以影响性能。</li>
+<li>Cookie 和 Session 的区别<br>http 是一个无状态协议，因此 Cookie 的最大作用就是存储 sessionid用来唯一标识用户。</li>
+<li>click 在 ios 上有 300ms 延迟，原因及如何解决？</li>
+</ol>
+<ul>
+<li>暴力解决 - 禁用缩放<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, user-scalable=no"</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>利用 FastClick<br>检测到 touchend 事件后，like触发模拟 click 事件，并且把浏览器 300ms 之后真正触发的事件给阻塞掉。</li>
+</ul>
+<ol start="7">
+<li>Cookie, sessionStroage, localStroage 的区别<br><code>共同点</code>：都是保存在浏览器端，并且都是同源的。<br><code>Cookie</code>: cookie 数据始终在同源的 http 请求中携带（即使不需要），即 cookie 在浏览器和服务器间来回传递。而 sessionStorage 和 localStorage 不会自动把数据发给服务器，仅在本地保存。cookie 数据还有路径(path)的概念，可以限制 cookie 只属于某个路径下，存储的大小很小只有 4k 左右（key：可以在浏览器和服务器来回传递，储存容量小，只有 4k 左右）。<br><code>sessionStorage</code>: 仅在当浏览器窗口关闭前有效，自然也就不可能持久保持。<br><code>localStorage</code>：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据; cookie 只在设置的 cookie 过期时间之前一直有效，及时窗口或浏览器关闭。(key： 本身就是一个回话过程，关闭浏览器后消失，session 为一个回话，当页面不同即使是同一页面打开两次，也被视为同一次回话)。<br><code>localStorage</code>： localStorage 在所有同源窗口都是共享的; cookie 也是在所有同源窗口共享的。（key: 同源窗口都会共享，并且不会失效，不管窗口或者浏览器关闭与否始终生效）。<br>cookie的作用：<br><code>保存用户登录状态</code>。例如将用户 ID 存储在一个 cookie 内，这样当用户下次访问该页面时就不需要重新登录了，现在很多论坛和社区都提供这样的功能。 cookie 还可以设置过期时间，当超过过期时间后，cookie 就会自动消失，因此， 系统往往可以提示用户保持登录状态的时间。<br><code>跟踪用户行为。</code>例如一个天气预报网站，能够根据用户选择的地区显示当地的天气情况。如果每次需要选择所在地是繁琐的，当利用了 cookie 后就会显得很人性化了，系统能够用记住上一次访问的地区，当下次再打开你该页面时，他就会自动显示上次用户所在地区的天气情况。因为一切都是在后台完成，所以这样的页面就像为没够用户所定制的一样，使用起来非常方便定制页面。如果网站提供了换肤或者更换布局的功能，name可以使用 cookie 来记录用户的选项，例如：背景色，分辨率等，当用户下次访问时，仍然可以保存上一次访问的界面风格。</li>
+<li>讲讲 304<br>304：如果客户端发送了一个带条件的 GET 请求且该请求被允许，而文档的内容（自上次访问以来或者根据请求的条件）并没有改变，则服务器应当返回这个 304 状态码。</li>
+<li>前端优化<br><code>降低请求量</code>：合并资源，减少 http 请求数， minify/gzip 压缩， webP, lazyLoad.<br><code>加快请求速度</code>：预解析 DNS， 减少域名数， 并行加载， CDN 分发。<br><code>缓存</code>：http 协议缓存请求，离线缓存 manifest，离线数据缓存 localStorage。<br><code>渲染</code>：JS/CSS 优化，加载顺序，服务端渲染， pipeline。</li>
+<li>GET 和 POST 的区别<ul>
+<li>get参数通过url传递，post放在request body中。</li>
+<li>get请求在url中传递的参数是有长度限制的，而post没有。</li>
+<li>get比post更不安全，因为参数直接暴露在url中，所以不能用来传递敏感信息。</li>
+<li>get请求只能进行url编码，而post支持多种编码方式</li>
+<li>get请求会浏览器主动cache，而post支持多种编码方式。</li>
+<li>get请求参数会被完整保留在浏览历史记录里，而post中的参数不会被保留。</li>
+<li>GET和POST本质上就是TCP链接，并无差别。但是由于HTTP的规定和浏览器/服务器的限制，导致他们在应用过程中体现出一些不同。</li>
+<li>GET产生一个TCP数据包；POST产生两个TCP数据包。</li>
+</ul>
+</li>
+<li>HTTP 支持的方法<blockquote>
+<p>GET, POST, HEAD, OPTIONS, PUT, DELETE, TRACE, CONNECT</p>
+</blockquote>
+</li>
+<li>画一个三角形<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">border-top</span>:<span class="number">10px</span> solid red;</span><br><span class="line">  <span class="attribute">border-right</span>:<span class="number">10px</span> solid transparent;</span><br><span class="line">  <span class="attribute">border-bottom</span>:<span class="number">10px</span> solid transparent;</span><br><span class="line">  <span class="attribute">border-left</span>:<span class="number">10px</span> solid transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>HTML5新增的元素<br>首先 HTML5 为了更好的实践 web 语义化，增加了 header, footer, nav, aside,section等语义化标签，在表单方面，为了增强表单， 为 input 提供了 color,email, data, range 等类型，在存储方面， 提供了 sessionStorage, localStorage 和离线存储，通过这些村存储方式方便数据在客户端的存储和获取，在多媒体方面规定了音频和视频元素 audio 和 vedio, 另外还有地理定位， canvas 画布, 拖放，多线程编程的 web worker 和 websocket 协议。</li>
+<li>在地址栏里输入一个URL,到这个页面呈现出来，中间会发生什么？<br>输入url后，首先需要找到这个url域名的服务器ip,为了寻找这个ip，浏览器首先会寻找缓存，查看缓存中是否有记录，缓存的查找记录为：浏览器缓存 –&gt; 系统缓存 –&gt; 路由器缓存，缓存中没有则查找系统的hosts文件中是否有记录，如果没有则查询DNS服务器，得到服务器的ip地址后，浏览器根据这个ip以及相应的端口号，构造一个http请求，这个请求报文会包括这次请求的信息，主要是请求方法，请求说明和请求附带的数据，并将这个http请求封装在一个tcp包中，这个tcp包会依次经过传输层，网络层，数据链路层，物理层到达服务器，服务器解析这个请求来作出响应，返回相应的html给浏览器，因为html是一个树形结构，浏览器根据这个html来构建DOM树，在dom树的构建过程中如果遇到JS脚本和外部JS连接，则会停止构建DOM树来执行和下载相应的代码，这会造成阻塞，这就是为什么推荐JS代码应该放在html代码的后面，之后根据外部央视，内部央视，内联样式构建一个CSS对象模型树CSSOM树，构建完成后和DOM树合并为渲染树，这里主要做的是排除非视觉节点，比如script，meta标签和排除display为none的节点，之后进行布局，布局主要是确定各个元素的位置和尺寸，之后是渲染页面，因为html文件中会含有图片，视频，音频等资源，在解析DOM的过程中，遇到这些都会进行并行下载，浏览器对每个域的并行下载数量有一定的限制，一般是4-6个，当然在这些所有的请求中我们还需要关注的就是缓存，缓存一般通过Cache-Control、Last-Modify、Expires等首部字段控制。 Cache-Control和Expires的区别在于Cache-Control使用相对时间，Expires使用的是基于服务器 端的绝对时间，因为存在时差问题，一般采用Cache-Control，在请求这些有设置了缓存的数据时，会先 查看是否过期，如果没有过期则直接使用本地缓存，过期则请求并在服务器校验文件是否修改，如果上一次 响应设置了ETag值会在这次请求的时候作为If-None-Match的值交给服务器校验，如果一致，继续校验 Last-Modified，没有设置ETag则直接验证Last-Modified，再决定是否返回304.<br>总结：DNS解析; TCP连接; 发送HTTP请求; 服务器处理请求并返回HTTP报文; 浏览器解析渲染页面; 连接结。</li>
+<li>cache-control的值有哪些<br>cache-control是一个通用消息头字段被用于HTTP请求和响应中，通过指定指令来实现缓存机制，这个缓存指令是单向的，常见的取值有private、no-cache、max-age、must-revalidate等，默认为private。</li>
+<li>浏览器在生成页面的时候，会生成那两颗树？<br>构造两棵树，DOM树和CSSOM规则树。当浏览器接收到服务器相应来的HTML文档后，会遍历文档节点，生成DOM树; CSSOM规则树由浏览器解析CSS文件生成。</li>
+<li>怎么看网站的性能如何<br>检测页面加载时间一般有两种方式:<br><code>被动去测</code>：就是在被检测的页面置入脚本或探针，当用户访问网页时，探针自动采集数据并传回数据库进行分析;<br><code>主动监测的方式</code>，即主动的搭建分布式受控环境，模拟用户发起页面访问请求，主动采集性能数据并分析，在检测的精准度上，专业的第三方工具效果更佳，比如说性能极客.</li>
+<li>200和304的区别</li>
+</ol>
+<ul>
+<li>200 OK 请求成功。一般用于GET与POST请求</li>
+<li>304 Not Modified 未修改。所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。客户端通常会缓存访问过的资源，通过提供一个头信息指出客户端希望只返回在指定日期之后修改的资源。</li>
+</ul>
+<ol start="19">
+<li>HTML5和CSS3用的多吗？你了解它们的新属性吗？有在项目中用过吗？<br><code>HTML5</code>:<ul>
+<li>标签增删：<br>8个语义元素 header section footer aside nav main article figure。<br>新的表单控件：calander date time email url search<br>新的 input 类型：color data datetime datetime-local email<br>移除过时的标签：big font frame frameset</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>canvas 绘图：支持内联 SVG， 支持 MATHML</li>
+<li>多媒体 audio video source embed track</li>
+<li>本地离线存储，把需要离线存储在本地的文件爱你列在一个 manifest 配置文件</li>
+<li>web 存储 localStorage sessionStorage<br><code>CSS3</code><br>边框： border-radius,box-shadow 等;<br>背景： background-size,background-origin<br>2D, 3D 转换： transform<br>动画：animation</li>
+</ul>
+<ol start="20">
+<li>画一条 0.5px 的线</li>
+</ol>
+<ul>
+<li>采用 meta viewport 方式<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"initial-scale=1.0, maximum-scale=1.0, user-scalable=no"</span> /&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>采用border-image的方式</li>
+<li>采用transform: scale()的方式</li>
+</ul>
+<ol start="21">
+<li><p>垂直居中的方法<br><code>margin: auto;</code> 定位为上下左右为0，margin：0可以实现脱离文档流的居中.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">div</span>&gt;</span><br><span class="line">  &lt;img src="mm.jpg"&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">400px</span>;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#465468</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">margin</span>: auto;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>margin 负值法</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">2px</span> solid <span class="number">#379</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.inner</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">480px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">380px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#746</span>;</span><br></pre></td></tr></table></figure>
+<p><code>tabel-cell(未脱离文档流)：</code>设置父元素的display:table-cell,并且vertical-align:middle，这样子元素可以实现垂直居中。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">3px</span> solid <span class="number">#555</span>;</span><br><span class="line">  <span class="attribute">display</span>: table-cell;</span><br><span class="line">  <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">img</span>&#123;</span><br><span class="line">  <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>flex</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">3px</span> solid <span class="number">#546461</span>;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-flex;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">-webkit-align-items</span>: center;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">-webkit-justify-content</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.inner</span>&#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">3px</span> solid <span class="number">#458761</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>说一下块元素和行元素<br><code>块元素：</code>独占一行，并且有自动填满父元素，可以设置margin和pading以及高度和宽度<br><code>行元素：</code>不会独占一行，width和height会失效，并且在垂直方向的padding和margin会失效</p>
+</li>
+<li><p>多行元素的文本省略号</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-box</span><br><span class="line">  -webkit-box-orient:vertical</span><br><span class="line">  -webkit-line-clamp:<span class="number">3</span></span><br><span class="line">  overflow:hidden</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>visibility=hidden, opacity=0，display:none 区别<br>opacity=0，该元素隐藏起来了，但不会改变页面布局，并且，如果该元素已经绑定一些事件，如click事件，那么点击该区域，也能触发点击事件的。<br>visibility=hidden，该元素隐藏起来了，但不会改变页面布局，但是不会触发该元素已经绑定的事件。<br>display=none，把元素隐藏起来，并且会改变页面布局，可以理解成在页面中把该元素删除掉一样。</p>
+</li>
+<li><p>介绍一下盒模型<br>CSS盒模型本质上是一个盒子，封装周围的HTML元素，它包括：边距，边框，填充，和实际内容。<br><code>标准盒模型</code>：一个块的总宽度=width+margin(左右)+padding(左右)+border(左右)<br><code>怪异盒模型</code>：一个块的总宽度=width+margin（左右）（既width已经包含了padding和border值）<br>设置盒模型：box-sizing:border-box </p>
+</li>
+<li><p>position相关属性<br><code>固定定位fixed：</code>元素的位置相对于浏览器窗口是固定位置，即使窗口是滚动的它也不会移动。Fixed定位使元素的位置与文档流无关，因此不占据空间。 Fixed定位的元素和其他元素重叠。<br><code>相对定位relative：</code>如果对一个元素进行相对定位，它将出现在它所在的位置上。然后，可以通过设置垂直或水平位置，让这个元素“相对于”它的起点进行移动。 在使用相对定位时，无论是否进行移动，元素仍然占据原来的空间。因此，移动元素会导致它覆盖其它框。<br><code>绝对定位absolute：</code>绝对定位的元素的位置相对于最近的已定位父元素，如果元素没有已定位的父元素，那么它的位置相对于<html>。 absolute 定位使元素的位置与文档流无关，因此不占据空间。 absolute 定位的元素和其他元素重叠。<br><code>粘性定位sticky：</code>元素先按照普通文档流定位，然后相对于该元素在流中的flow root（BFC）和 containing block（最近的块级祖先元素）定位。而后，元素定位表现为在跨越特定阈值前为相对定位，之后为固定定位。<br><code>默认定位Static：</code>默认值。没有定位，元素出现在正常的流中（忽略top, bottom, left, right 或者 z-index 声明）。<br><code>inherit:</code>规定应该从父元素继承position 属性的值。</html></p>
+</li>
+<li><p>如何实现图片在某个容器中居中的？</p>
+</li>
+</ol>
+<ul>
+<li>父元素固定宽高，利用定位及设置子元素margin值为自身的一半。</li>
+<li>父元素固定宽高，子元素设置position: absolute，margin：auto平均分配margin</li>
+<li>css3属性transform。子元素设置position: absolute; left: 50%; top: 50%;transform: translate(-50%,-50%);即可。</li>
+<li>将父元素设置成display: table, 子元素设置为单元格 display: table-cell。</li>
+<li>弹性布局display: flex。设置align-items: center; justify-content: center </li>
+</ul>
+<ol start="28">
+<li>如何实现元素的垂直居中 </li>
+</ol>
+<ul>
+<li>父元素display:flex,align-items:center;</li>
+<li>元素绝对定位，top:50%，margin-top：-（高度/2）</li>
+<li>高度不确定用transform：translateY（-50%）</li>
+<li>父元素table布局，子元素设置vertical-align:center;</li>
+</ul>
+<ol start="29">
+<li>三栏布局的实现方式，尽可能多写，浮动布局时，三个div的生成顺序有没有影响,<br>三列布局又分为两种，两列定宽一列自适应，以及两侧定宽中间自适应<br>两列定宽一列自适应：<br><code>float+margin：</code>给div设置float：left，left的div添加属性margin-right：left和center的间隔px,right的div添加属性margin-left：left和center的宽度之和加上间隔<br><code>float+overflow：</code>给div设置float：left，再给right的div设置overflow:hidden。这样子两个盒子浮动，另一个盒子触发bfc达到自适应<br><code>position：</code>父级div设置position：relative，三个子级div设置position：absolute，这个要计算好盒子的宽度和间隔去设置位置，兼容性比较好，<br><code>table实现：</code>父级div设置display：table，设置border-spacing：10px//设置间距，取值随意,子级div设置display:table-cell，这种方法兼容性好，适用于高度宽度未知的情况，但是margin失效，设计间隔比较麻烦，<br><code>flex实现：</code>parent的div设置display：flex；left和center的div设置margin-right；然后right 的div设置flex：1；这样子right自适应，但是flex的兼容性不好<br><code>grid实现：</code>parent的div设置display：grid，设置grid-template-columns属性，固定第一列第二列宽度，第三列auto.</li>
+</ol>
+<p>对于两侧定宽中间自适应的布局，对于这种布局需要把center放在前面，可以采用双飞翼布局：圣杯布局，来实现，也可以使用上述方法中的grid，table，flex，position实现。<br>  30. 有一个width300，height300，怎么实现在屏幕上垂直水平居中<br> 对于行内块级元素，</p>
+<ol>
+<li>父级元素设置text-alig：center，然后设置line-height和vertical-align使其垂直居中，最后设置font-size：0消除近似居中的bug</li>
+<li>父级元素设置display：table-cell，vertical-align：middle达到水平垂直居中</li>
+<li>采用绝对定位，原理是子绝父相，父元素设置position：relative，子元素设置position：absolute，然后通过transform或margin组合使用达到垂直居中效果，设置top：50%，left：50%，transform：translate（-50%，-50%）</li>
+<li>绝对居中，原理是当top,bottom为0时，margin-top&amp;bottom设置auto的话会无限延伸沾满空间并平分，当left，right为0时,margin-left&amp;right设置auto会无限延伸占满空间并平分，</li>
+<li>采用flex，父元素设置display：flex，子元素设置margin：auto</li>
+<li>视窗居中，vh为视口单位，50vh即是视口高度的50/100，设置margin：50vh auto 0，transform：translate(-50%)</li>
+<li>设置一个元素的背景颜色，背景颜色会填充哪些区域？<br>background-color设置的背景颜色会填充元素的content、padding、border区域</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/19/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" rel="next" title="字符串常用方法总结">
+                <i class="fa fa-chevron-left"></i> 字符串常用方法总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars0.githubusercontent.com/u/27355995?s=40&v=4"
+                alt="summertzz" />
+            
+              <p class="site-author-name" itemprop="name">summertzz</p>
+              <p class="site-description motion-element" itemprop="description">如果爱，请深爱</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/summertzz" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://lsbbd.cn" title="lsbbd" target="_blank">lsbbd</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础"><span class="nav-number">1.</span> <span class="nav-text">基础</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">summertzz</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共10.2k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+</body>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</html>
