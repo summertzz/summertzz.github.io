@@ -261,6 +261,513 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/28/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93%E4%B8%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="summertzz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/27355995?s=40&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="summertzz'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/28/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93%E4%B8%AD/" itemprop="url">Vue-Router 学习笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-28T11:53:20+08:00">
+                2020-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  10.2k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  41 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>根据 “路” 这个词的头脑风暴</p>
+<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><ul>
+<li><strong>路由是根据不同的 url 地址展示不同的内容或页面</strong><h3 id="后端路由"><a href="#后端路由" class="headerlink" title="后端路由"></a>后端路由</h3></li>
+<li>浏览器在地址栏中切换不同的url时，每次都向后台服务器发出请求，服务器响应请求，在后台拼接html文件传给前端显示, 返回不同的页面, 意味着浏览器会刷新页面，网速慢的话说不定屏幕全白再有新内容。后端路由的另外一个极大的问题就是前后端不分离。</li>
+<li><strong>优点</strong>：分担了前端的压力，html和数据的拼接都是由服务器完成。</li>
+<li><strong>缺点</strong>：当项目十分庞大时，加大了服务器端的压力，同时在浏览器端不能输入制定的url路径进行指定模块的访问。另外一个就是如果当前网速过慢，那将会延迟页面的加载，对用户体验不是很友好。</li>
+<li><strong>举例：</strong>分配一个站点，服务器地址是：<a href="http://192.168.1.200:8899" target="_blank" rel="noopener">http://192.168.1.200:8899</a>，在这个网站中提供了三个界面。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;192.168.1.200:8899&#x2F;index.html          主页</span><br><span class="line">http:&#x2F;&#x2F;192.168.1.200:8899&#x2F;about&#x2F;aboutus.html  关于我们页面</span><br><span class="line">http:&#x2F;&#x2F;192.168.1.200:8899&#x2F;feedback.html       反馈界面</span><br></pre></td></tr></table></figure></li>
+<li>当我们在浏览器输入 <a href="http://192.168.1.200:8899/index.html" target="_blank" rel="noopener">http://192.168.1.200:8899/index.html</a> 访问界面的时候，web 服务器就会接收到这个请求，然后把 index.html 解析出来，并找到相应的 index.html 并展示出来，这就是路由的分发，路由的分发是通过路由功能来完成的。<h3 id="前端路由"><a href="#前端路由" class="headerlink" title="前端路由"></a>前端路由</h3></li>
+<li>很重要的一点是<strong>页面不刷新</strong>，前端路由就是把不同路由对应不同的内容或页面的任务交给前端来做，每跳转到不同的URL都是使用 hash 路由. 随着（SPA）单页应用的不断普及，前后端开发分离，目前项目基本都使用前端路由，在项目使用期间页面不会重新加载。</li>
+<li><strong>什么时候使用前端路由？</strong>在单页面应用，大部分页面结构不变，只改变部分内容的使用</li>
+<li><strong>优点</strong>:<ul>
+<li><strong>用户体验好，前端页面的渲染和数据分离了，页面的渲染不会因为请求数据而阻塞。</strong></li>
+<li>可以再浏览器中输入指定想要访问的url路径地址。</li>
+</ul>
+</li>
+<li>虽然前端路由和后端路由的实现方式不一样，但是原理都有是相同的，在 H5 的 history Api 出来之前，前端路由的功能都是通过 hash  来实现的，hash 能兼容低版本的浏览器。</li>
+</ul>
+<p><strong>PS:</strong>后端路由每次访问一个页面都要向浏览器发送请求，然后服务端再响应解析，在这个过程中肯定会存在延迟，但是前端路由中访问一个新的界面的时候只是浏览器的路径改变了，没有和服务端交互「所以不存在延迟」，这个对用户体验来说是大大的提高。如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;192.168.1.200:8080&#x2F;#&#x2F;index.html</span><br><span class="line">http:&#x2F;&#x2F;192.168.1.200:8080&#x2F;#&#x2F;about&#x2F;aboutus.html</span><br><span class="line">http:&#x2F;&#x2F;192.168.1.200:8080&#x2F;#&#x2F;feedback.html</span><br></pre></td></tr></table></figure>
+<p>由于 web 服务器不会解析 # 后面的东西(所以通过 hash 能提高性能)，但是客户端的 js 可以拿到 # 后面的东西，有一个方法是 window.location.hash 来读取，使用这个方法来匹配到不同的方法上，配合前端的一些逻辑操作就完成路由功能，剩下只是关心接口调用。<br><strong>举例</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;www.xxx.com&#x2F;path&#x2F;a&#x2F;b&#x2F;c.html?key1&#x3D;aaa &amp;&amp; key2&#x3D;bbb &amp;&amp; key3&#x3D;ccc#&#x2F;path&#x2F;d&#x2F;e.html</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>拆分这个地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http:协议</span><br><span class="line">www.xxx.com:域名</span><br><span class="line">&#x2F;path&#x2F;a&#x2F;b&#x2F;c.html:路由，即服务器上的资源</span><br><span class="line">?key1&#x3D;aaa &amp;&amp; key2&#x3D;bbb &amp;&amp; key3&#x3D;ccc：Get 请求的参数， </span><br><span class="line">#&#x2F;path&#x2F;d&#x2F;e.html：hash 也叫散列值，也叫锚点</span><br></pre></td></tr></table></figure>
+<p>上面的 hash 是和浏览器交互的，其它的都是和服务器进行交互。<br>通过上述我们知道，<strong>前端路由的实现方式有两种：</strong></p>
+</li>
+<li><p>改变 hash 值，监听 hashchange 事件，可以兼容低版本浏览器</p>
+</li>
+<li><p>通过 H5 的 history API 来监听 popState 事件，使用 pushState 和 replaceState 实现</p>
+<h3 id="hash-改变路由"><a href="#hash-改变路由" class="headerlink" title="hash 改变路由"></a><strong>hash 改变路由</strong></h3><h3 id="H5-的-history"><a href="#H5-的-history" class="headerlink" title="H5 的 history"></a><strong>H5 的 history</strong></h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/History_API" target="_blank" rel="noopener">文档： https://developer.mozilla.org/zh-CN/docs/Web/API/History_API</a><br>window 的 history 提供了对浏览器历史记录的访问功能，并且它暴露了一些方法和属性，让你在历史记录中自由的前进和后退，并且在 H5 中还可以操作历史记录中的数据。<br>在 chrome 浏览器的调试窗口中在 console 中输入 window.history,会得到 history 的一些方法和属性，如下图所示<br><img src="https://uploader.shimo.im/f/D14sKsXkreI40IMJ.png!thumbnail" alt="图片"></p>
+</li>
+<li><p>back():在历史记录中后退</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history.back() ;</span><br></pre></td></tr></table></figure></li>
+<li><p>forward:在历史记录中前进</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history.forward();</span><br></pre></td></tr></table></figure></li>
+<li><p>go():移动到指定的历史记录点</p>
+</li>
+</ul>
+<p>其中正数是前进「+1就是前进一个界面」，负责是后退的意思「-1就是后退一个界面」</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history.go(-1)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>length</li>
+</ul>
+<p>hisgory 的属性，显示 history 的长度</p>
+<ul>
+<li>pushState(data,title[,url]：给历史记录堆栈顶部添加一条记录<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history.pushState(data,title[,url])</span><br></pre></td></tr></table></figure>
+使用 H5 的 history 的 pushState 可以代替 hash，并且更加优雅,点击各个导航没有刷新浏览器，并且点击浏览器的回退按钮，会显示上一次记录，这都是使用 h5 history 的 pushState 和监听 onpopstate 实现的，这就是一个简单的 SPA ,基本上实现了和上面 hash 一样的功能。</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><p>后端路由：每次访问都要向 server 发送一个请求，server 需要响应解析，会有延迟「网络不好更严重」</p>
+</li>
+<li><p>前端路由：只是改变浏览器的地址，不刷新浏览器，不和服务端交互，所以性能有大大的提高「用户体验提高」，并且前端路由有两种实现方式。</p>
+<ul>
+<li>实现 hash 并监听 hashchange 事件来实现</li>
+<li>使用 H5 的 hisgory 的 pushState() 监听 popstate 方法来实现<h2 id="Vue-Router"><a href="#Vue-Router" class="headerlink" title="Vue Router"></a>Vue Router</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a><strong>概述</strong></h3></li>
+</ul>
+</li>
+<li><p>vue-router 和 vue.js 是深度集成的,适合用于<strong>单页面应用</strong>.传统的路由是用一些超链接来实现页面切换和跳转.而vue-router在单页面应用中,则是<strong>组件之间的切换</strong>.<strong>其本质就是:建立并管理 url 和对应组件之间的映射关系.</strong></p>
+</li>
+<li><p>Vue Router 使构建单页面应用变得简单。使用 Vue.js ，我们已经可以通过组合组件来组成应用程序，当我们引入 Vue Router 后，我们需要做的是，将组件 (components) 映射到路由 (routes)，然后告诉 Vue Router 在哪里渲染它们(<router-link> &amp; <router-view>)。</router-view></router-link></p>
+<h3 id="抓核心"><a href="#抓核心" class="headerlink" title="抓核心"></a>抓核心</h3><p>vue router 最核心的两个点</p>
+</li>
+<li><p>路由配置</p>
+</li>
+<li><p>路由使用</p>
+<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3></li>
+<li><p><strong>下载 vue， vue router</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i vue vue-router -s</span><br></pre></td></tr></table></figure>
+<h3 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a><strong>总体思路</strong></h3></li>
+<li><p>vue-router 是 vue.js 的一个插件，vue-router 要进行注册</p>
+</li>
+<li><p>需要定义模板，即 template （很多个）</p>
+</li>
+<li><p>vue - router 的定义规则，完成模板和 hash 的匹配规则  </p>
+</li>
+<li><p>如果在页面中定义调用转发的路由 – a 标签</p>
+</li>
+<li><p>模板的内容放在什么地方 <router-view></router-view></p>
+<h3 id="vue-router-简易关系图"><a href="#vue-router-简易关系图" class="headerlink" title="vue router 简易关系图"></a>vue router 简易关系图</h3></li>
+<li><p><em>关系图：如 ***</em>vue router 简易关系图.xmind<strong>** 所示</strong></p>
+</li>
+<li><p><img src="https://uploader.shimo.im/f/Q036DSBlRQccw8xP.png!thumbnail" alt="图片"></p>
+<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3></li>
+<li><p><em>router，routes， route 的区别*</em></p>
+</li>
+<li><p><strong>router:</strong>一般指的就是路由实例.如$router.</p>
+</li>
+<li><p>*<em>routes: *</em>指router路由实例的routes API.用来配置多个route路由对象.</p>
+</li>
+<li><p>*<em>route: *</em>指的就是路由对象.例如;$route指的就是当前路由对象.</p>
+<h3 id="vue-router-的两种模式"><a href="#vue-router-的两种模式" class="headerlink" title="vue router 的两种模式"></a>vue router 的两种模式</h3></li>
+<li><p><em>一般单页面应用是(SPA)不会请求页面而是只更新视图***</em>.** vue-router提供了两种方式来实现前端路由:Hash模式和History模式,可以用mode参数来决定使用哪一种方式.</p>
+</li>
+</ul>
+<h3 id="hash-模式"><a href="#hash-模式" class="headerlink" title="hash 模式"></a>hash 模式</h3><p>vue-router默认使用Hash模式.使用url的hash来模拟一个完整的url.<strong>此时url变化时,浏览器是不会重新加载的**</strong>.<strong>Hash(即#)是url的锚点,代表的是网页中的一个位置,仅仅改变#后面部分,浏览器只会滚动对应的位置,而不会重新加载页面.</strong>#仅仅只是对浏览器进行指导,而对服务端是完全没有作用的!它不会被包括在http请求中,故也不会重新加载页面<strong>**.</strong>同时<strong>hash发生变化时,url都会被浏览器记录下来,这样你就可以使用浏览器的后退了.</strong></p>
+<p><strong>总结:Hash模式的本质就是通过改变#后面的值,实现浏览器渲染指定的组件**</strong>.**</p>
+<h3 id="history模式"><a href="#history模式" class="headerlink" title="history模式"></a>history模式</h3><p>history模式利用了HTML5 History新增的<strong>pushState()和replaceState()方法**</strong>.** 除了之前的back,forward,go方法,这两个新方法可以应用在浏览器历史记录的增加替换功能上.使用History模式<strong>,通过历史记录修改url,但它不会立即向后端发送请求</strong>. <strong>注意点:</strong> 虽然History模式可以丢掉不美观的#,也可以正常的前进后退,但是刷新之后,此时浏览器就会访问服务器,在没有后台支持的情况下,此时就会得到一个404!官方文档给出的描述是:”不过这种模式要玩好,还需要后台配置支持.因为我们的应用是单个客户端应用,如果后台没有正确的配置,当用户直接访问时,就会返回404.所以呢,你要在服务端增加一个覆盖所有情况的的候选资源;如果url匹配不到任何静态资源,则应该返回同一个index.html页面.”</p>
+<p><strong>总结:History模式就是通过pushState()方法来对浏览器的浏览记录进行修改,来达到不用请求后端来渲染的效果.不过建议,实际项目还是使用history模式.</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const router &#x3D; new VueRouter(&#123;</span><br><span class="line">  mode: &#39;history&#39;, &#x2F;&#x2F;如果这里不写,路由默认为hash模式</span><br><span class="line">  routes: [...]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="history模式服务端配置-增添内容"><a href="#history模式服务端配置-增添内容" class="headerlink" title="history模式服务端配置(增添内容)"></a><strong>history模式服务端配置(增添内容)</strong></h3><p>配置这个的原因是<strong>当你进入某个路由之后，再次刷新页面时（或者是浏览器直接输入某个路由路径时）</strong>，当刷新页面，浏览器就会重新dns解析，tcp协议，这个时候会根据浏览器的url去服务器找对应资源，当然我们vue-router是为单页面服务的，对应的url在服务端是肯定没有静态资源的，就会出现404，当配置了以下url重写语句，注意是重写，不是重定向，<strong>不改变url的情况重写浏览器内容</strong>，重写到index.html，因为这个index.html使我们项目的入口，index.html里面会读取当时打包好的app.js，就可以读取到路由配置，以实现我们浏览器的url对应的路由页面。</p>
+<blockquote>
+<p>hash模式不需要配置，因为浏览器会忽略#和？后面的参数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">打包文件在根目录时，</span><br><span class="line">location &#x2F; &#123; </span><br><span class="line">  try_files $uri $uri&#x2F; &#x2F;index.html;</span><br><span class="line">&#125;</span><br><span class="line">打包文件在非根目录时，</span><br><span class="line">location &#x2F;admin &#123;</span><br><span class="line">  try_files $uri $uri&#x2F; &#x2F;admin&#x2F;index.html;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="动态路由匹配"><a href="#动态路由匹配" class="headerlink" title="动态路由匹配"></a>动态路由匹配</h3><p><strong>目的</strong>：如何将多路径映射至同一组件？如何在该组件下监听路径的变化？</p>
+<p><strong>本质：**</strong>动态路由匹配本质上就是通过url进行传参**</p>
+<p>** <strong>**路由对象属性：</strong></p>
+<ul>
+<li><strong>$route.path</strong> 类型: <strong>string</strong> 字符串，对应当前路由的路径，<strong>总是解析为绝对路径，</strong>如 “/foo/bar”。</li>
+<li><strong>$route.params</strong> 类型: Object 一个 key/value 对象，包含了动态片段和全匹配片段，如果没有路由参数，就是一个空对象。</li>
+<li><strong>$route.query</strong> 类型: Object 一个 key/value 对象，表示 URL 查询参数。例如，对于路径 /foo?user=1，则有 $route.query.user == 1，如果没有查询参数，则是个空对象。</li>
+<li><strong>$route .name</strong> 当前路由的名称。<strong>这里建议最好给每个路由对象命名,方便以后编程式导航.同时name必须唯一!</strong></li>
+<li><strong>$route.hash</strong> 类型: string 当前路由的 hash 值 (带 #) ，如果没有 hash 值，则为空字符串。</li>
+<li><strong>$route.fullPath</strong> 类型: string 完成解析后的 URL，包含查询参数和 hash 的完整路径。</li>
+<li><strong>$route.matched</strong> 类型: Array<RouteRecord> 一个数组，包含当前路由的所有嵌套路径片段的<strong>路由记录</strong> 。路由记录就是 routes 配置数组中的对象副本 (还有在 children 数组)。 <strong>$route.redirectedFrom</strong> 如果存在重定向，即为重定向来源的路由的名字。</RouteRecord></li>
+</ul>
+<p><strong>params 配置路由</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">routes:[&#123;</span><br><span class="line">	&#x2F;&#x2F;动态路径参数,以冒号开头</span><br><span class="line">	path:&#39;&#x2F;user&#x2F;:id&#39;,</span><br><span class="line">	component:User</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+<p>就是使用params进行配置.像/user/foo和/user/bar都将映射到相同的路由.</p>
+<ul>
+<li>一个路径参数使用’:’冒号进行标记.</li>
+<li>当匹配到一个路由时,参数就会被设置到this.$route.params,可以在每个组件内使用.例如/user/foo在this.$route.params.id就为foo</li>
+</ul>
+<p><img src="https://uploader.shimo.im/f/UvpXiuHKVIcM0Uw6.png!thumbnail" alt="图片"></p>
+<p><strong>举例</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">routes:[</span><br><span class="line">	&#123;path:&#39;&#x2F;user&#x2F;:shot&#x2F;foo&#x2F;:id&#39;, component:shotCat&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">	&lt;router-link to&#x3D;&quot;&#x2F;user&#x2F;shot&#x2F;foo&quot;&gt;&#x2F;user&#x2F;shot&#x2F;foo&lt;&#x2F;router-link&gt;  	&lt;!--无法匹配到对应路由--&gt;	</span><br><span class="line">	&lt;router-link to&#x3D;&quot;&#x2F;user&#x2F;shot&#x2F;cat&#x2F;foo&quot;&gt;&#x2F;user&#x2F;shot&#x2F;cat&#x2F;foo&lt;&#x2F;router-link&gt;	&lt;!--无法匹配到对应路由--&gt;	</span><br><span class="line">	&lt;router-link to&#x3D;&quot;&#x2F;user&#x2F;foo&#x2F;foo&#x2F;foo&quot;&gt;&#x2F;user&#x2F;foo&#x2F;foo&#x2F;foo&lt;&#x2F;router-link&gt;	&lt;!--成功匹配,$route.params.shot为foo;$route.params.cat为foo;--&gt;	</span><br><span class="line">	&lt;router-link to&#x3D;&quot;&#x2F;user&#x2F;shot&#x2F;foo&#x2F;cat&quot;&gt;&#x2F;user&#x2F;shot&#x2F;foo&#x2F;cat&lt;&#x2F;router-link&gt;</span><br><span class="line">&lt;!--成功匹配,$route.params.shot为shot;$route.params.cat为cat;--&gt;	</span><br><span class="line">&lt;&#x2F;p&gt;</span><br></pre></td></tr></table></figure>
+<p><router-view></router-view></p>
+<p><strong>总结：</strong></p>
+<ul>
+<li>同一个路径可以匹配多个路由,此时,匹配的优先级就按照路由的定义顺序.谁先定义的,谁的优先级就最高.</li>
+<li>由于路由参数对组件实例是复用的.例如:/user/foo 和 /user/bar在使用路由参数时,复用的都是User组件.此时组件的生命周期钩子不会再被调用。如果你想路径切换时,进行一些初始化操作时,可以用以下两种解决办法:<ul>
+<li>在组件内 watch $route 对象：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const User &#x3D; &#123;</span><br><span class="line"> template: &#39;...&#39;,</span><br><span class="line"> watch: &#123;</span><br><span class="line">   &#39;$route&#39; (to, from) &#123;</span><br><span class="line">     &#x2F;&#x2F; 对路由变化作出响应...</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>使用beforeRouteUpdate 路由守卫<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const User &#x3D; &#123;</span><br><span class="line">  template: &#39;...&#39;,</span><br><span class="line">  beforeRouteUpdate (to, from, next) &#123;</span><br><span class="line">	&#x2F;&#x2F; react to route changes...</span><br><span class="line">	&#x2F;&#x2F; don&#39;t forget to call next()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><em>query进行配置传参*</em></li>
+</ul>
+<p>在项目里我们可以通过上面提到的params进行传参.同时也可以用query进行传参. 比如: <router-link to="/user?id=foo">foo</router-link> vue-router会自动将?后的id=foo封装进this.$route.query里. 此时,在组件里this.$route.query.id值为’foo’. 除了通过router-link的to属性. query也可以导航进行传参。</p>
+<h3 id="命名路由"><a href="#命名路由" class="headerlink" title="命名路由"></a>命名路由</h3><p><strong>目的</strong>：给路由起一个名字</p>
+<p><strong>如何使用？</strong></p>
+<p>可以通过一个名称来标识一个路由，特别是在链接一个路由，或者是执行一些跳转的时候。可以在创建 Router 实例的时候，在 routes 配置中给某个路由设置名称。</p>
+<p><img src="https://uploader.shimo.im/f/mz5uA2inLnkpPTaw.png!thumbnail" alt="图片"></p>
+<p><img src="https://uploader.shimo.im/f/L7KcGMgqsvw6R6X7.png!thumbnail" alt="图片"></p>
+<p><strong>注意：**</strong>path 和 params 一同出现的时候，params 会被忽略掉，<strong>你需要</strong>提供路由的 name <strong>或者</strong>提供完整的带有参数的 path，**此处需要注意。在使用编程式导航时，使用 this.$router.push() 改变当前路由也需要注意，path 和 params 是不能共存的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const id &#x3D; 123;</span><br><span class="line">router.push(&#123; name: &#39;user&#39;, params: &#123; id &#125; &#125;); &#x2F;&#x2F; -&gt; &#x2F;user&#x2F;123</span><br><span class="line">router.push(&#123; path: &#96;&#x2F;user&#x2F;$&#123; id &#125;&#96; &#125;); &#x2F;&#x2F; -&gt; &#x2F;user&#x2F;123</span><br><span class="line">&#x2F;&#x2F; 这里的 params 不生效，path 和 params 不能共存</span><br><span class="line">router.push(&#123; path: &#39;&#x2F;user&#39;, params: &#123; id &#125; &#125;); &#x2F;&#x2F; -&gt; &#x2F;user</span><br></pre></td></tr></table></figure>
+<h3 id="声明式和编程式"><a href="#声明式和编程式" class="headerlink" title="声明式和编程式"></a>声明式和编程式</h3><p><strong>什么是编程式导航</strong></p>
+<p>编程式导航就是在vue组件内部通过this.$router访问路由实例,完全用 js 去操作路由，进行路由映射,所以 <strong>它的作用是和<router-link :to>是一样的!</router-link></strong> </p>
+<p><strong>编程式导航的使用场景</strong></p>
+<p>如果想在路由跳转前做点其他事情,例如权限验证等.但是用<router-link>的话,就直接跳转了.此时就可以使用编程式导航!</router-link></p>
+<p><strong>编程式导航的写法</strong></p>
+<p><strong>router.push() 方法</strong></p>
+<p>编程式导航用到router.push方法.该方法的参数可以是一个字符串路径,或者一个描述地址的对象.例如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;字符串</span><br><span class="line">this.$router.push(&#39;home&#39;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;对象</span><br><span class="line">this.$ruter.push(&#123;path:&#39;home&#39;&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;命名路由</span><br><span class="line">this.$router.push(&#123;name:&#39;user&#39;,params:&#123;userId:2333&#125;&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;带查询参数,变成&#x2F;register?plan&#x3D;private</span><br></pre></td></tr></table></figure>
+<p>this.$router.push({path:’register’,query:{plan:’private’}})</p>
+<p><strong>注意： path和params是不能同时生效的!,</strong>否则params会被忽略掉.所以使用对象写法进行params传参时,要么就是path加冒号:,要么就是像上例中的’命名路由’.通过name和params进行传参.然而query却并不受影响,有没有path都可以进行传参.<br>*<em>router.replace（）方法 *</em></p>
+<p>router.replace和router.push很像,写法一样.但实际效果不一样.push是向history里添加新记录.<strong>而replace是直接将当前浏览器history记录替换掉!</strong></p>
+<p>对比router.push() 和 router.replace() 的区别:</p>
+<ul>
+<li>用push方法,页面1跳转到页面2,你使用浏览器的后退可以回到页面1</li>
+<li>用replace方法,页面1被替换成页面2,你使用浏览器的后退,<strong>此时你回不到页面1</strong>,只能回到页面1的前一页,页面0.</li>
+</ul>
+<p><strong>router.replace() 使用场景</strong></p>
+<p>当你不想让用户回退到之前的页面时,常见于权限验证,验证后就不让用户回退到登录页重复验证.</p>
+<p><strong>router.go(n)方法</strong></p>
+<p>方法的参数就是一个整数,意思是在history记录中前进或后退多少步.类似window.history.go(n).这样就能控制页面前进或者后退多少步.</p>
+<p><strong>总结：</strong></p>
+<p>实际上不通过routes配置,也可以用下面这种方法直接在router-link上通过to进行传参. <strong>关于to的更详细用法:</strong> 可以<a href="https://router.vuejs.org/zh/api/#to" target="_blank" rel="noopener">参考官方的api文档</a>. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">routes:[</span><br><span class="line">	&#123;name:&#39;shotCat&#39;,path:&#39;&#x2F;shotCat&#39;, component:shotCat&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-link :to&#x3D;&quot;&#123; name:&#39;shotCat&#39;,params:&#123;paramId:&#39;hello&#39;&#125;,</span><br><span class="line">query:&#123;queryId:&#39;world&#39;&#125;&#125;&quot;&gt;helloWorld&lt;&#x2F;router-link&gt; </span><br><span class="line">  &lt;!--此时通过name匹配到路由对象shotCat.--&gt;	 </span><br><span class="line">&lt;router-link :to&#x3D;&quot;&#123; path:&#39;&#x2F;shotCat&#39;,params:&#123;paramId:&#39;hello&#39;&#125;,</span><br><span class="line">query:&#123;queryId:&#39;world&#39;&#125;&#125;&quot;&gt;helloWorld&lt;&#x2F;router-link&gt; </span><br><span class="line">  &lt;!--此时通过path匹配到路由对象shotCat.但是!!!!!此时&#96;paramId&#96;并不能添加到&#96;$route.params&#96;里,只有&#96;queryId&#96;成功添加到&#96;$route.query&#96;--&gt;</span><br></pre></td></tr></table></figure>
+<p>通过两个router-link.可以发现这种写法和编程式导航的规则一样, <strong>path和params是不能同时生效的!</strong> 所以最好给每个路由对象进行命名!<br> <strong>小结:</strong></p>
+<ul>
+<li><router-link :to="{ }">等同于this.$router.push(). <strong>path和params是不能同时存在的!</strong>,想通过params,就得加上name属性.query不受影响.</router-link></li>
+<li><router-link :to="{ }">和this.$router.push()的实际效果也是一样的.<ul>
+<li>params参数都不会显示在url地址栏中.除了在路由中通过routes进行配置的.所以用户刷新页面后,params参数就会丢失!</li>
+<li>query参数可以正常显示在url地址栏中.刷新页面后也不会丢失</li>
+</ul>
+</router-link></li>
+</ul>
+<p><strong>通过to虽然可以进行params,query传参.但是注意此时页面url并不会改变!.所以你刷新页面后,params 参数就没有了，但是query的参数还在.</strong></p>
+<p>核心代码：如编程式导航.html 所示。</p>
+<h3 id="嵌套路由与命名视图"><a href="#嵌套路由与命名视图" class="headerlink" title="嵌套路由与命名视图"></a>嵌套路由与命名视图</h3><ul>
+<li><strong>嵌套路由</strong>:就是父路由嵌套子路由.url上就是/user嵌套两个子路由后就是/user/foo和/uer/bar.用一张图表示就是:</li>
+<li><img src="https://uploader.shimo.im/f/S6NXw2KprFYGxxEY.png!thumbnail" alt="图片"></li>
+</ul>
+<p><strong>一个<router-view>对应展示的就是一个组件</router-view></strong> 因此实现嵌套路由有两个要点:</p>
+<ul>
+<li>路由对象中定义子路由(嵌套子路由)</li>
+<li>组件内<router-view>的使用.</router-view></li>
+</ul>
+<p>路由对象定义子路由</p>
+<p><img src="https://uploader.shimo.im/f/2T3eLkxgld0Aye0Y.png!thumbnail" alt="图片"></p>
+<p><strong>组件内 <router-view>的使用</router-view></strong></p>
+<p><img src="https://uploader.shimo.im/f/j5bNfoiu0MI0lOqs.png!thumbnail" alt="图片"></p>
+<p><img src="https://uploader.shimo.im/f/jw1hZpFGn3IMsooc.png!thumbnail" alt="图片"></p>
+<h3 id="命名视图"><a href="#命名视图" class="headerlink" title="命名视图"></a>命名视图</h3><ul>
+<li><strong>命名视图</strong>:就是一个组件里有多个视图进行展示.即包含有多个<router-view></router-view></li>
+</ul>
+<p>如果一个组件有多个视图,来展示多个子组件.这个时候就需要用到<strong>命名视图</strong> 。</p>
+<p><img src="https://uploader.shimo.im/f/v29xuAIcufsLQbz7.png!thumbnail" alt="图片"></p>
+<h3 id="重定向和别名"><a href="#重定向和别名" class="headerlink" title="重定向和别名"></a>重定向和别名</h3><p>重定向其实就是通过路由拦截path,然后替换url跳转到redirect所指定的路由上. 重定向是通过 routes 配置来完成。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;从 &#x2F;a 重定向到 &#x2F;b</span><br><span class="line">const router &#x3D; new VueRouter(&#123;</span><br><span class="line">	routes:[</span><br><span class="line">		&#123;path:&#39;&#x2F;a&#39;,rediret:&#39;&#x2F;b&#39;&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;&#x2F;从 &#x2F;a 重定向到 命名为&#39;foo&#39;的路由</span><br><span class="line">const router &#x3D; new VueRouter(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123; path: &#39;&#x2F;a&#39;, redirect: &#123; name: &#39;foo&#39; &#125;&#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;甚至是一个方法，动态返回重定向目标：</span><br><span class="line">const router &#x3D; new VueRouter(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123; path: &#39;&#x2F;a&#39;, redirect: to &#x3D;&gt; &#123;</span><br><span class="line">      &#x2F;&#x2F; 方法接收 目标路由 作为参数</span><br><span class="line">      &#x2F;&#x2F; return 重定向的 字符串路径&#x2F;路径对象</span><br><span class="line">	  const &#123; hash, params, query &#125; &#x3D; to</span><br><span class="line">	  &#x2F;&#x2F;这里使用了ES6的解构写法,分别对应了to的hash模式,params,query参数.这里解构就不具体说明了.</span><br><span class="line">        if (query.to &#x3D;&#x3D;&#x3D; &#39;foo&#39;) &#123;</span><br><span class="line">          return &#123; path: &#39;&#x2F;foo&#39;, query: null &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (hash &#x3D;&#x3D;&#x3D; &#39;#baz&#39;) &#123;</span><br><span class="line">          return &#123; name: &#39;baz&#39;, hash: &#39;&#39; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (params.id) &#123;</span><br><span class="line">          return &#39;&#x2F;with-params&#x2F;:id&#39;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          return &#39;&#x2F;bar&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;&#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h3><p>重定向是替url换路径,达到路由跳转.那别名就是一个路由有两个路径.两个路径都能跳转到该路由.  别名是在routes里的alias进行配置:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const router &#x3D; new VueRouter(&#123;</span><br><span class="line">&#x2F;&#x2F;这时,路径&#39;&#x2F;fxxksky&#39;和&#39;&#x2F;two-dogs&#39; 都会跳转到A</span><br><span class="line">  routes: [</span><br><span class="line">    &#123; path: &#39;&#x2F;fxxksky&#39;, component: A, alias: &#39;&#x2F;two-dogs&#39; &#125;</span><br><span class="line">	&#x2F;&#x2F;当有多个别名时,alias也可以写成数组形式.  alias: [&#39;&#x2F;two-dogs&#39;, &#39;three-dogs&#39;,&#39;four-dogs&#39;,&#39;five-dogs&#39;] </span><br><span class="line">  ]</span><br></pre></td></tr></table></figure>
+<h3 id><a href="#" class="headerlink" title="})"></a>})</h3><p>路由组件传参<br>目的：通过传参将组件与路由解耦，使得组件的使用更加灵活。</p>
+<p>路由传参,可以通过params和query进行传参.但这两种传参方式,本质上都是把参数放在url上,通过改变url进行的.这样就会造成参数和组件的高度耦合. 如果想传参的时候,可以更自由,摆脱url的束缚.这时就可以使用 route的props进行解耦，提高组件的复用,同时不改变url.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;路由配置:</span><br><span class="line">const Hello &#x3D; &#123;</span><br><span class="line">  props: [&#39;name&#39;], &#x2F;&#x2F;使用route的props传参的时候,对应的组件一定要添加props进行接收,否则根本拿不到传参</span><br><span class="line">  template: &#39;&lt;div&gt;Hello &#123;&#123; $route.params&#125;&#125;和&#123;&#123;this.name&#125;&#125;&lt;&#x2F;div&gt;&#39;</span><br><span class="line">  &#x2F;&#x2F;如果this.name 有值,那么name已经成功成为组件的属性,传参成功</span><br><span class="line">&#125;</span><br><span class="line">const router &#x3D; new VueRouter(&#123;</span><br><span class="line">mode: &#39;history&#39;,</span><br><span class="line">  routes: [</span><br><span class="line">    &#123; path: &#39;&#x2F;&#39;, component: Hello &#125;, &#x2F;&#x2F; 没有传参  所以组件什么都拿不到</span><br><span class="line">    &#123; path: &#39;&#x2F;hello&#x2F;:name&#39;, component: Hello, props: true &#125;, &#x2F;&#x2F;布尔模式: props 被设置为 true，此时route.params (即此处的name)将会被设置为组件属性。</span><br><span class="line">    &#123; path: &#39;&#x2F;static&#39;, component: Hello, props: &#123; name: &#39;world&#39; &#125;&#125;, </span><br><span class="line">&#x2F;&#x2F; 对象模式: 此时就和params没什么关系了.此时的name将直接传给Hello组件.注意:此时的props需为静态!</span><br><span class="line">    &#123; path: &#39;&#x2F;dynamic&#x2F;:years&#39;, component: Hello, props: dynamicPropsFn &#125;,</span><br><span class="line">  &#x2F;&#x2F; 函数模式: 1,这个函数可以默认接受一个参数即当前路由对象.</span><br><span class="line">  &#x2F;&#x2F; 2,这个函数返回的是一个对象.</span><br><span class="line">  &#x2F;&#x2F; 3,在这个函数里你可以将静态值与路由相关值进行处理.</span><br><span class="line">    &#123; path: &#39;&#x2F;attrs&#39;, component: Hello, props: &#123; name: &#39;attrs&#39; &#125;&#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">function dynamicPropsFn (route) &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    name: (new Date().getFullYear() + parseInt(route.params.years)) + &#39;!&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  router,</span><br><span class="line">  el: &#39;#app&#39;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--html部分--&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">      &lt;h1&gt;Route props&lt;&#x2F;h1&gt;</span><br><span class="line">      &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;&lt;router-link to&#x3D;&quot;&#x2F;&quot;&gt;&#x2F;&lt;&#x2F;router-link&gt;&lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;&lt;router-link to&#x3D;&quot;&#x2F;hello&#x2F;you&quot;&gt;&#x2F;hello&#x2F;you&lt;&#x2F;router-link&gt;&lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;&lt;router-link to&#x3D;&quot;&#x2F;static&quot;&gt;&#x2F;static&lt;&#x2F;router-link&gt;&lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;&lt;router-link to&#x3D;&quot;&#x2F;dynamic&#x2F;1&quot;&gt;&#x2F;dynamic&#x2F;1&lt;&#x2F;router-link&gt;&lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;&lt;router-link to&#x3D;&quot;&#x2F;attrs&quot;&gt;&#x2F;attrs&lt;&#x2F;router-link&gt;&lt;&#x2F;li&gt;</span><br><span class="line">      &lt;&#x2F;ul&gt;</span><br><span class="line">      &lt;router-view&gt;&lt;&#x2F;router-view&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="路由懒加载"><a href="#路由懒加载" class="headerlink" title="路由懒加载"></a>路由懒加载</h3><p>利用 Vue 提供的异步组件以及 Webpack 提供的代码分割功能提高组件加载效率</p>
+<p>vue主要用于单页面应用，此时webpack会打包大量文件,这样就会造成首页需要加载资源过多,首屏时间过长,给用户一种不太友好的体验. 如果使用路由懒加载,仅在你路由跳转的时候才加载相关页面.这样首页加载的东西少了,首屏时间也减少了. vueRouter的懒加载主要是靠<strong>Vue 的异步组件</strong>和 <strong>Webpack 的代码分割功能</strong>，轻松实现路由组件的懒加载。 比较简单的写法只需要将组件以promise形式引入即可.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">routes:[</span><br><span class="line">      path:&#39;&#x2F;&#39;,</span><br><span class="line">      name:&#39;HelloWorld&#39;,</span><br><span class="line">      component:resolve&#x3D;&gt;require([&#39;@&#x2F;component&#x2F;HelloWorld&#39;],resolve)</span><br><span class="line">  ]</span><br><span class="line">  &#x2F;&#x2F;此时HelloWorld组件则不需要在第一步import进来</span><br></pre></td></tr></table></figure>
+<p><strong>把组件分块</strong><br>把组件按组分块可以把路由下的所有组件都打包在同个异步块 (chunk) 中,并且在devtools 的network里面看到动态加载的组件名字. </p>
+<p><strong>前提条件:</strong></p>
+<ul>
+<li>Webpack版本 &gt; 2.4</li>
+<li>需要在webpack.base.conf.js里面的output里面的filename下面加上chunkFileName<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line"> path: config.build.assetsRoot,</span><br><span class="line"> filename: &#39;[name].js&#39;,</span><br><span class="line"> &#x2F;&#x2F; 需要配置的地方</span><br><span class="line"> chunkFilename: &#39;[name].js&#39;,</span><br><span class="line"> publicPath: process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#39;production&#39;</span><br><span class="line">   ? config.build.assetsPublicPath</span><br><span class="line">   : config.dev.assetsPublicPath</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+此时在引入组件时的写法需要使用 命名 chunk，一个特殊的注释语法来提供 chunk name<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const Foo &#x3D; () &#x3D;&gt; import(&#x2F;* webpackChunkName: &quot;group-foo&quot; *&#x2F; &#39;.&#x2F;Foo.vue&#39;)</span><br><span class="line">const Bar &#x3D; () &#x3D;&gt; import(&#x2F;* webpackChunkName: &quot;group-foo&quot; *&#x2F; &#39;.&#x2F;Bar.vue&#39;)</span><br><span class="line">const Baz &#x3D; () &#x3D;&gt; import(&#x2F;* webpackChunkName: &quot;group-foo&quot; *&#x2F; &#39;.&#x2F;Baz.vue&#39;)</span><br></pre></td></tr></table></figure>
+<h3 id="导航守卫"><a href="#导航守卫" class="headerlink" title="导航守卫"></a>导航守卫</h3>路由导航守卫,通俗点说就是路由钩子.作用也和生命周期钩子类似,在路由跳转过程进行操作控制. 导航守卫有很多钩子,</li>
+</ul>
+<p><strong>导航守卫分类</strong></p>
+<ul>
+<li><strong>全局守卫:</strong>异步执行,每个路由跳转都会按顺序执行.<ul>
+<li><strong>router.beforeEach</strong> 全局前置守卫</li>
+<li><strong>router.beforeResolve</strong> 全局解析守卫(2.5.0+) 在<strong>beforeRouteEnter</strong>调用之后调用.</li>
+<li><strong>router.afterEach *<em>全局后置钩子 进入路由之后 *</em>注意:不支持next()</strong>,只能写成这种形式<strong>router.afterEach((to, from) =&gt; {})</strong>;</li>
+</ul>
+</li>
+</ul>
+<p>每个守卫方法接收三个参数：</p>
+<p><strong>to: Route</strong>: 即将要进入的目标 <a href="https://router.vuejs.org/zh/api/#%E8%B7%AF%E7%94%B1%E5%AF%B9%E8%B1%A1" target="_blank" rel="noopener">路由对象</a></p>
+<p><strong>from: Route</strong>: 当前导航正要离开的路由对象</p>
+<ul>
+<li><strong>next: Function</strong>: 一定要调用该方法来 <strong>resolve</strong> 这个钩子。执行效果依赖 next 方法的调用参数。<ul>
+<li><strong>next()</strong>: 进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就是 <strong>confirmed</strong> (确认的)。</li>
+<li><strong>next(false)</strong>: 中断当前的导航。如果浏览器的 URL 改变了 (可能是用户手动或者浏览器后退按钮)，那么 URL 地址会重置到 from 路由对应的地址。</li>
+<li><strong>next(‘/‘) 或者 next({ path: ‘/‘ })</strong>: 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。你可以向 next 传递任意位置对象，且允许设置诸如 replace: true、name: ‘home’ 之类的选项以及任何用在 <a href="https://router.vuejs.org/zh/api/#to" target="_blank" rel="noopener">router-link 的 to prop</a> 或 <a href="https://router.vuejs.org/zh/api/#router-push" target="_blank" rel="noopener">router.push</a> 中的选项。</li>
+<li><strong>next(error)</strong>: (2.4.0+) 如果传入 next 的参数是一个 Error 实例，则导航会被终止且该错误会被传递给 <a href="https://router.vuejs.org/zh/api/#router-onerror" target="_blank" rel="noopener">router.onError()</a> 注册过的回调。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;1,可以在main.js 或者在单独的路由配置文件router.js中进行设置</span><br><span class="line">	router.beforeEach((to, from, next) &#x3D;&gt; &#123; </span><br><span class="line">	...</span><br><span class="line">      next();</span><br><span class="line">    &#125;);</span><br><span class="line">	</span><br><span class="line">&#x2F;&#x2F;2,也可以在组件内部设置</span><br><span class="line">	this.$router.beforeEach((to, from, next) &#x3D;&gt; &#123; </span><br><span class="line">	...</span><br><span class="line">      next();</span><br><span class="line">    &#125;);</span><br><span class="line">	</span><br><span class="line">&#x2F;&#x2F;3,对函数及next()的详细使用说明</span><br><span class="line">    router.beforeEach((to, from, next) &#x3D;&gt; &#123; </span><br><span class="line">	&#x2F;&#x2F;首先to和from 其实是一个路由对象,所以路由对象的属性都是可以获取到</span><br><span class="line">	&#x2F;&#x2F;例如:我想获取获取to的完整路径就是to.path.</span><br><span class="line">    &#x2F;&#x2F;获取to的子路由to.matched[0].</span><br><span class="line">      next();&#x2F;&#x2F;使用时,千万不能漏写next!!!</span><br><span class="line">	&#x2F;&#x2F;next()  表示直接进入下一个钩子.</span><br><span class="line">	&#x2F;&#x2F;next(false)  中断当前导航</span><br><span class="line">	&#x2F;&#x2F;next(&#39;&#x2F;path路径&#39;)或者对象形式next(&#123;path:&#39;&#x2F;path路径&#39;&#125;)  跳转到path路由地址</span><br><span class="line">	&#x2F;&#x2F;next(&#123;path:&#39;&#x2F;shotcat&#39;,name:&#39;shotCat&#39;,replace:true,query:&#123;logoin:true&#125;...&#125;)  这种对象的写法,可以往里面添加很多.router-link 的 to prop 和 router.push 中的选项(具体可以查看api的官方文档)全都是可以添加进去的,再说明下,replace:true表示替换当前路由地址,常用于权限判断后的路由修改.</span><br><span class="line">	&#x2F;&#x2F;next(error)的用法,(需2.4.0+) </span><br><span class="line">    &#125;).catch(()&#x3D;&gt;&#123;</span><br><span class="line">  &#x2F;&#x2F;跳转失败页面</span><br><span class="line">  next(&#123; path: &#39;&#x2F;error&#39;, replace: true, query: &#123; back: false &#125;&#125;)</span><br><span class="line">&#125;)</span><br><span class="line">&#x2F;&#x2F;如果你想跳转报错后,再回调做点其他的可以使用 router.onError()</span><br><span class="line">router.onError(callback &#x3D;&gt; &#123; </span><br><span class="line">      console.log(&#39;出错了!&#39;, callback);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><strong>路由独享的守卫:</strong> 即路由对象独享的守卫<ul>
+<li><strong>beforeEnter</strong>:路由只独享这一个钩子,在routes里配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const router &#x3D; new VueRouter(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: &#39;&#x2F;foo&#39;,</span><br><span class="line">      component: Foo,</span><br><span class="line">      beforeEnter: (to, from, next) &#x3D;&gt; &#123;</span><br><span class="line">        &#x2F;&#x2F; 使用方法和上面的beforeEach一样</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><strong>组件内的守卫:</strong> 注意:这类路由钩子是写在组件内部的,<ul>
+<li><strong>beforeRouteEnter</strong> 进入路由前,此时实例还没创建,无法获取到this</li>
+<li><strong>beforeRouteUpdate</strong> (2.2) 路由复用同一个组件时</li>
+<li>*<em>beforeRouteLeave *</em>离开当前路由,此时可以用来保存数据,或数据初始化,或关闭定时器等等<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;在组件内部进行配置,这里的函数用法也是和beforeEach一样</span><br><span class="line">const Foo &#x3D; &#123;</span><br><span class="line">  template: &#96;...&#96;,</span><br><span class="line">  beforeRouteEnter (to, from, next) &#123;</span><br><span class="line">    &#x2F;&#x2F; 在渲染该组件的对应路由被 confirm 前调用</span><br><span class="line">    &#x2F;&#x2F; 不！能！获取组件实例 &#96;this&#96;</span><br><span class="line">    &#x2F;&#x2F; 因为当守卫执行前，组件实例还没被创建</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeRouteUpdate (to, from, next) &#123;</span><br><span class="line">    &#x2F;&#x2F; 在当前路由改变，但是该组件被复用时调用</span><br><span class="line">    &#x2F;&#x2F; 举例来说，对于一个带有动态参数的路径 &#x2F;foo&#x2F;:id，在 &#x2F;foo&#x2F;1 和 &#x2F;foo&#x2F;2 之间跳转的时候，</span><br><span class="line">    &#x2F;&#x2F; 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。</span><br><span class="line">    &#x2F;&#x2F; 可以访问组件实例 &#96;this&#96;</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeRouteLeave (to, from, next) &#123;</span><br><span class="line">    &#x2F;&#x2F; 导航离开该组件的对应路由时调用</span><br><span class="line">    &#x2F;&#x2F; 可以访问组件实例 &#96;this&#96;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="路由元信息"><a href="#路由元信息" class="headerlink" title="路由元信息"></a>路由元信息</h3></li>
+</ul>
+</li>
+<li><em>什么是路由元信息*</em></li>
+</ul>
+<p>一句话概括:路由配置的meta对象里的信息.  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const router &#x3D; new VueRouter(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: &#39;&#x2F;foo&#39;,</span><br><span class="line">      component: Foo,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          path: &#39;bar&#39;,</span><br><span class="line">          component: Bar,</span><br><span class="line">          &#x2F;&#x2F; a meta field</span><br><span class="line">          meta: &#123; requiresAuth: true &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>可以看出就是给路由添加了一个自定义的meta对象,并在里面设置了一个requiresAuth状态为true.<br><strong>它有什么用</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach((to, from, next) &#x3D;&gt; &#123;</span><br><span class="line">  if (to.matched.some(record &#x3D;&gt; record.meta.requireAuth)) &#123;</span><br><span class="line">	&#x2F;&#x2F;数组some方法,如果meta.requiresAuth为ture,则返回true.此时,说明进入该路由前需要判断用户是否已经登录 </span><br><span class="line">    if (!auth.loggedIn()) &#123;   &#x2F;&#x2F;如果没登录,则跳转到登录页</span><br><span class="line">      next(&#123;</span><br><span class="line">        path: &#39;&#x2F;login&#39;,</span><br><span class="line">        query: &#123; redirect: to.fullPath &#125;  </span><br><span class="line">      &#125;)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      next()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    next() &#x2F;&#x2F; 确保一定要调用 next()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>我们可以通过在meta里设置的状态,来判断是否需要进行登录验证.如果meta里的requiresAuth为true,则需要判断是否已经登录,没登录就跳转到登录页.如果已登录则继续跳转.path,params,query都可以存储信息,作为登录验证的状态标记.的确,它们也可以达到同样的效果.如果是少量单个的验证,使用它们问题不大. 但如果是多个路由都需要进行登录验证呢?path,params,query是把信息显性地存储在url上的.并且多个路径都把一个相同的状态信息加在url上.这样就使url不再单纯,并且也很不优雅美观. 所以要优雅要隐性地传递信息,就使用meta对象吧!</p>
+<h3 id="滚动行为"><a href="#滚动行为" class="headerlink" title="滚动行为"></a>滚动行为</h3><p>当切换路由时,可以使页面滚动到你想要的某个地方,或者是保持之前滚动的位置,这时你就需要使用scrollBehavior这个方法.</p>
+<p><strong>注意点:</strong></p>
+<ul>
+<li>这里控制和记住的滚动位置都是仅对整个组件页面而言的,并不包含你组件里面其他的滚动条.</li>
+<li>这里路由的模式只能是history.因为它使用了History新增的pushState()<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">const router &#x3D; new VueRouter(&#123;</span><br><span class="line">mode:&#39;history&#39;,&#x2F;&#x2F;这个不能忘,默认是hash模式</span><br><span class="line">  routes: [...],</span><br><span class="line">  scrollBehavior (to, from, savedPosition) &#123;</span><br><span class="line">     &#x2F;&#x2F; to：要进入的目标路由对象，到哪里去.和导航守卫的beforeEach一样</span><br><span class="line">	 &#x2F;&#x2F;from：离开的路由对象，哪里来</span><br><span class="line">	 &#x2F;&#x2F;savedPosition: 点击前进&#x2F;后退的时候记录值&#123;x:?,y:?&#125;.并且只有通过浏览器的前进后退才会触发.</span><br><span class="line">    &#x2F;&#x2F; return 期望滚动到哪个的位置 &#123; x: number, y: number &#125;或者是&#123; selector: string, offset? : &#123; x: number, y: number &#125;&#125;,这里selector接收字符串形式的hash,如&#39;#foo&#39;,同时你还可以通过offset设置偏移,版本需要大于2.6+</span><br><span class="line">	&#x2F;&#x2F;举个实例</span><br><span class="line">	if(savePosition) &#123; &#x2F;&#x2F;如果是浏览器的前进后退就,返回之前保存的位置</span><br><span class="line">      return savePosition;</span><br><span class="line">    &#125;else if(to.hash) &#123;&#x2F;&#x2F;如果存在hash,就滚动到hash所在位置</span><br><span class="line">      return &#123;selector: to.hash&#125;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">	  return &#123;x:0,y:0&#125;&#x2F;&#x2F;否则就滚动到顶部</span><br><span class="line">	&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="数据获取"><a href="#数据获取" class="headerlink" title="数据获取"></a>数据获取</h3>数据可以在导航完成前获取或者导航完成后获取，以给予用户不同的用户体验。</li>
+</ul>
+<p>有时候，进入某个路由后，需要从服务器获取数据。例如，在渲染用户信息时，你需要从服务器获取用户的数据。我们可以通过两种方式来实现：</p>
+<ul>
+<li><strong>导航完成之后获取</strong>：先完成导航，然后在接下来的组件生命周期钩子中获取数据。在数据获取期间显示“加载中”之类的指示。</li>
+<li><strong>导航完成之前获取</strong>：导航完成前，在路由进入的守卫中获取数据，在数据获取成功后执行导航。</li>
+</ul>
+<p>从技术角度讲，两种方式都不错，就看你想要的用户体验是哪种。</p>
+<h3 id="过渡动画"><a href="#过渡动画" class="headerlink" title="过渡动画"></a>过渡动画</h3><p>给路由切换时添加过渡效果。</p>
+<p><router-view> 是基本的动态组件，所以我们可以用 <transition> 组件给它添加一些过渡效果，如果你想让每个路由组件有各自的过渡效果，可以在各路由组件内使用 <transition> 并设置不同的 name</transition></transition></router-view></p>
+<h3 id="vue-router-工具"><a href="#vue-router-工具" class="headerlink" title="vue router 工具"></a>vue router 工具</h3><h3 id="-1"><a href="#-1" class="headerlink" title></a><img src="https://uploader.shimo.im/f/rRBS3xW6l5o67Sh6.png!thumbnail" alt="图片"></h3><p><img src="https://uploader.shimo.im/f/r1P9CxU3xvk9GTcq.png!thumbnail" alt="图片"> </p>
+<h3 id="模块化开发"><a href="#模块化开发" class="headerlink" title="模块化开发"></a>模块化开发</h3><ul>
+<li><p>如果使用 vue 开发移动端app ，那么页面跳转就非常多，路由使用的非常非常多，这样就更能体现出路由的强大之处。</p>
+</li>
+<li><p>分析</p>
+<h2 id="Vue-Router-采坑记"><a href="#Vue-Router-采坑记" class="headerlink" title="Vue Router 采坑记"></a>Vue Router 采坑记</h2></li>
+<li><p>query方式传参和接收参数</p>
+<ul>
+<li>传参<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">this.$router.push(&#123;</span><br><span class="line">        path:&#39;&#x2F;xxx&#39;,</span><br><span class="line">        query:&#123;</span><br><span class="line">          id:id</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li>
+<li>接收参数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.$route.query.id</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><em>备注：传参是this.$router,接收参数是this.$route*</em></p>
+</li>
+<li><p>params方式传参和接收参数</p>
+<ul>
+<li>传参<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">this.$router.push(&#123;</span><br><span class="line">        name:&#39;xxx&#39;,</span><br><span class="line">        params:&#123;</span><br><span class="line">          id:id</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br></pre></td></tr></table></figure></li>
+<li>接收参数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.$route.params.id</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><em>备注: params传参，push里面只能是 name:’xxxx’,不能是path:’/xxx’,因为params只能用name来引入路由，如果这里写成了path，接收参数页面会是undefined。*</em><br>query相当于get请求，页面跳转的时候，可以在地址栏看到请求参数，而params相当于post请求，参数不会再地址栏中显示。</p>
+</li>
+<li><p>this.$router 和this.$route的区别</p>
+<ul>
+<li>$route为当前router跳转对象，里面可以获取name、path、query、params等。</li>
+<li>$router为VueRouter实例，想要导航到不同URL，则使用$router.push方法。</li>
+</ul>
+</li>
+<li><p>name 是什么？有什么用？</p>
+<ul>
+<li>注册时为该条路由取的名字</li>
+<li>重定向<ul>
+<li>在重定向的时候直接用name 代表 path 进行跳转，是一种快捷语法。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redirect:&#123;name:&#39;about&#39;&#125; &#x2F;&#x2F;name为注册路由时对应路由所取的名字，为上面的快捷用法</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>linkTo<ul>
+<li>在router-link上也可使用注册路由时路由所取的name对href进行设置，点击link时会自动跳转到该name路由的path<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-link :to&#x3D;&quot;&#123;name:&#39;about&#39;&#125;&quot; tag&#x3D;&quot;li&quot;&gt;work&lt;&#x2F;router-link&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>一路多图<ul>
+<li>是一个路由对应多个视图时对除了路由默认视图的视图进行标注，以便引入对应的路由。在路由切换时，一个路由可以对应多个视图router-view，这时候我们就需要区分不同的 <strong>router-view</strong> ，所以就需要取个名字。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-view name&#x3D;&quot;addV&quot;&gt;&lt;&#x2F;router-view&gt; &lt;router-view&gt;&lt;&#x2F;router-view&gt; &#x2F;&#x2F;----------------------------------------------------- ,&#123; path: &#39;&#x2F;document&#39;, name: &#39;Document&#39;, &#x2F;&#x2F; component: components:&#123; &#x2F;&#x2F;一个路由对应多个视图 default:main, &#x2F;&#x2F;default为关键字 ,没有取名的路由视图，必须的。main为引入的组件名 addV:other &#x2F;&#x2F;addV为附加的router-view上取的名字,other为引入的组件所取的名字 &#125; &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>如何更改 link 的标签类型</p>
+<ul>
+<li>直接在ink标签上利用tag属性进行修改<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-link :to&#x3D;&quot;index&quot; exact tag&#x3D;&quot;li&quot; class&#x3D;&quot;class1&quot; event&#x3D;&quot;mouseover&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>如何更改激活样式的类名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-link to&#x3D;&quot;&#x2F;about&quot; active-class&#x3D;&quot;diy&quot;&gt;about&lt;&#x2F;router-link&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>路由变化，页面数据不刷新</p>
+<ul>
+<li>原因<ul>
+<li>出现这种情况是因为依赖路由的params参数获取写在created生命周期里面,因为相同路由二次甚至多次加载的关系 没有达到监听，退出页面再进入另一个文章页面并不会运行created组件生命周期,导致文章数据还是第一次进入的数据</li>
+</ul>
+</li>
+<li>解决方案<ul>
+<li>watch监听路由是否变化<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> watch: &#123;</span><br><span class="line"> &#x2F;&#x2F; 方法1</span><br><span class="line">  &#39;$route&#39; (to, from) &#123; &#x2F;&#x2F;监听路由是否变化</span><br><span class="line">    if(this.$route.params.articleId)&#123;&#x2F;&#x2F; 判断条件1  判断传递值的变化</span><br><span class="line">      &#x2F;&#x2F;获取文章数据</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F;方法2</span><br><span class="line">  &#39;$route&#39;(to, from) &#123;</span><br><span class="line">    if (to.path &#x3D;&#x3D; &quot;&#x2F;page&quot;) &#123;    &#x2F;&#x2F;&#x2F; 判断条件2  监听路由名 监听你从什么路由跳转过来的</span><br><span class="line">       this.message &#x3D; this.$route.query.msg     </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>使用beforeRouteUpdate 守卫：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const User &#x3D; &#123;</span><br><span class="line">  template: &#39;...&#39;,</span><br><span class="line">  beforeRouteUpdate (to, from, next) &#123;</span><br><span class="line">    &#x2F;&#x2F; react to route changes...</span><br><span class="line">    &#x2F;&#x2F; don&#39;t forget to call next()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>按需加载</p>
+</li>
+</ul>
+<p>一般配合 Vue-Router 使用，适用于大型应用，将应用分割成小的代码块，只在需要的时候才从服务器加载。</p>
+<ul>
+<li>实现方式:<ul>
+<li>异步组件实现</li>
+<li>es6 import</li>
+</ul>
+</li>
+<li>好处:<ul>
+<li>按需加载，节省首次加载实践，提高速度，也算是一个性能优化；</li>
+<li>组件只会加载一次，加载完成后会缓存下来，使用一个组件多次使用的场景<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 异步组件实现</span><br><span class="line">export default new Router(&#123;</span><br><span class="line">    routes: [</span><br><span class="line">        &#123;</span><br><span class="line">            path: &#39;&#x2F;test&#39;,</span><br><span class="line">            name: &#39;test&#39;,</span><br><span class="line">            component: resolve &#x3D;&gt; require([&#39;..&#x2F;components&#x2F;Test&#39;], resolve)</span><br><span class="line">        &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br><span class="line">&#x2F;&#x2F; ES6 import</span><br><span class="line">const Test1 &#x3D; () &#x3D;&gt; import(&#39;..&#x2F;components&#x2F;Test1&#39;)</span><br><span class="line">const Test2 &#x3D; () &#x3D;&gt; import(&#39;..&#x2F;components&#x2F;Test2&#39;)</span><br><span class="line">export default new Router(&#123;</span><br><span class="line">    routes: [</span><br><span class="line">        &#123;</span><br><span class="line">            path: &#39;&#x2F;test1&#39;,</span><br><span class="line">            name: &#39;test1&#39;,</span><br><span class="line">            component: Test1</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            path: &#39;&#x2F;test2&#39;,</span><br><span class="line">            name: &#39;test2&#39;,</span><br><span class="line">            component: Test2</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>路由的懒加载<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 方式一</span><br><span class="line">component: () &#x3D;&gt; import(&quot;@&#x2F;views&#x2F;Login.vue&quot;)</span><br><span class="line">&#x2F;&#x2F; 方式二</span><br><span class="line">component: resolve &#x3D;&gt; require([&quot;@&#x2F;views&#x2F;Register.vue&quot;], resolve)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/28/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1647,7 +2154,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1737,7 +2244,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共10.2k字</span>
+  <span class="post-count">博客全站共20.4k字</span>
 </div>
 
         
